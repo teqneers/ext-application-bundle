@@ -22,11 +22,11 @@ services:
         class: TQ\ExtJS\Application\ManifestLoader
         public: false
 
-    tq_extjs.extjs_controller:
+    tq_extjs.controller:
         class: TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController
-        arguments: [ @tq_ext.application ]
+        arguments: [ @tq_extjs.application ]
 
-    tq_extjs.twig.ext_extension:
+    tq_extjs.twig.extension:
         class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtExtension
         arguments: [ @router ]
         tags:

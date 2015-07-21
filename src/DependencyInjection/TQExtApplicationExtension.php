@@ -21,6 +21,13 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
  */
 class TQExtJSApplicationExtension extends Extension
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getAlias()
+    {
+        return 'tq_extjs_application';
+    }
 
     /**
      * {@inheritdoc}
