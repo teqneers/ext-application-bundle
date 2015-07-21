@@ -24,14 +24,6 @@ class TQExtJSApplicationExtension extends Extension
     /**
      * {@inheritdoc}
      */
-    public function getAlias()
-    {
-        return 'tq_extjs_application';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $config, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
