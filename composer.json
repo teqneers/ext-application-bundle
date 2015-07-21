@@ -3,7 +3,7 @@
     "version": "0.1.x-dev",
     "type": "library",
     "description": "A Symfony 2 bundle to integrate Sencha Ext JS into a Symfony 2 application",
-    "homepage": "https://github.com/teqneers/ext-application-bundle.git",
+    "homepage": "https://github.com/teqneers/ext-application-bundle",
     "license": "MIT",
     "authors": [
         {
