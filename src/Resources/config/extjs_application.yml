@@ -27,7 +27,7 @@ services:
         arguments: [ @tq_extjs.application ]
 
     tq_extjs.twig.extension:
-        class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtExtension
+        class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtJSExtension
         arguments: [ @router ]
         tags:
             - { name: twig.extension }
