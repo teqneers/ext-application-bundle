@@ -1,0 +1,33 @@
+services:
+    tq_extjs.application:
+        class: TQ\ExtJS\Application\Application
+        arguments:
+            - @tq_extjs.application_configuration
+            - @tq_extjs.manifest_loader
+            - "%kernel.environment%"
+
+    tq_extjs.application_configuration:
+        class: TQ\ExtJS\Application\ApplicationConfiguration
+        arguments:
+            - ~
+            - ~
+            - ~
+            - ~
+            - ~
+            - ~
+            - ~
+        public: false
+
+    tq_extjs.manifest_loader:
+        class: TQ\ExtJS\Application\ManifestLoader
+        public: false
+
+    tq_extjs.extjs_controller:
+        class: TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController
+        arguments: [ @tq_ext.application ]
+
+    tq_extjs.twig.ext_extension:
+        class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtExtension
+        arguments: [ @router ]
+        tags:
+            - { name: twig.extension }
