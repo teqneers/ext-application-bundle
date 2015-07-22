@@ -1,6 +1,8 @@
 # ext-application-bundle
 A Symfony 2 bundle to integrate Sencha Ext JS into a Symfony 2 application
 
+[![Build Status](https://travis-ci.org/teqneers/ext-application-bundle.svg?branch=master)](https://travis-ci.org/teqneers/ext-application-bundle)
+
 ## License
 
 The MIT License (MIT)
