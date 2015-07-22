@@ -1,0 +1,2 @@
+tq_ext6:
+    resource: "@TQExtJSApplicationBundle/Resources/config/routing.yml"

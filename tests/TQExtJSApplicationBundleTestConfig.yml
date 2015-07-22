@@ -1,0 +1,11 @@
+framework:
+    secret: "Three can keep a secret, if two of them are dead."
+    router:
+        resource: "%kernel.root_dir%/TQExtJSApplicationBundleTestRouting.yml"
+        strict_requirements: ~
+
+tq_ext_js_application:
+    app_name: my-app
+    app_url: MyApp
+    workspace_path: %kernel.root_dir%/__files/workspace
+    web_path: %kernel.root_dir%/__files/web
