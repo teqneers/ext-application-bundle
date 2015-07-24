@@ -2,6 +2,8 @@
 A Symfony 2 bundle to integrate Sencha Ext JS into a Symfony 2 application
 
 [![Build Status](https://travis-ci.org/teqneers/ext-application-bundle.svg?branch=master)](https://travis-ci.org/teqneers/ext-application-bundle)
+[![Code Coverage](https://scrutinizer-ci.com/g/teqneers/ext-application-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/teqneers/ext-application-bundle/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/teqneers/ext-application-bundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/teqneers/ext-application-bundle/?branch=master)
 
 ## License
 
