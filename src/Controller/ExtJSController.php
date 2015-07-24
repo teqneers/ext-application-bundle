@@ -39,10 +39,9 @@ class ExtJSController
     }
 
     /**
-     * @param Request $request
      * @return Response
      */
-    public function bootstrapAction(Request $request)
+    public function bootstrapAction()
     {
         try {
             $bootstrapFile = $this->application->getMicroLoaderFile();
