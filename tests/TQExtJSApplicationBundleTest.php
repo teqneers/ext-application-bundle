@@ -101,7 +101,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         $request    = new Request();
         /** @var BinaryFileResponse $response */
-        $response = $controller->bootstrapAction($request);
+        $response = $controller->bootstrapAction();
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
