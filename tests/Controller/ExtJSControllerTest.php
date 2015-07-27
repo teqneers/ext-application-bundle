@@ -42,7 +42,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $controller = new ExtJSController($application);
         /** @var BinaryFileResponse $response */
-        $response = $controller->bootstrapAction(new Request());
+        $response = $controller->bootstrapAction();
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -69,7 +69,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
         $controller = new ExtJSController($application);
 
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
-        $controller->bootstrapAction(new Request());
+        $controller->bootstrapAction();
     }
 
     public function testManifestAction()
