@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 use TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController;
 use TQ\ExtJS\Application\Application;
 use TQ\ExtJS\Application\Exception\FileNotFoundException;
-use TQ\ExtJS\Application\Manifest;
+use TQ\ExtJS\Application\Manifest\Manifest;
 
 /**
  * Class ExtJSControllerTest

@@ -7,7 +7,7 @@ services:
             - "%kernel.environment%"
 
     tq_extjs.application_configuration:
-        class: TQ\ExtJS\Application\ApplicationConfiguration
+        class: TQ\ExtJS\Application\Configuration\ApplicationConfiguration
         arguments:
             - ~
             - ~
@@ -19,7 +19,7 @@ services:
         public: false
 
     tq_extjs.manifest_loader:
-        class: TQ\ExtJS\Application\ManifestLoader
+        class: TQ\ExtJS\Application\Manifest\ManifestLoader
         public: false
 
     tq_extjs.controller:
