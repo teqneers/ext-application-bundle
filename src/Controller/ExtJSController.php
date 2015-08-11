@@ -96,13 +96,13 @@ class ExtJSController
     public function appCacheAction($build)
     {
         try {
-            $bootstrapFile = $this->application->getAppCacheFile($build);
+            $appCacheFile = $this->application->getAppCacheFile($build);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Not Found', $e);
         }
 
         return new BinaryFileResponse(
-            $bootstrapFile,
+            $appCacheFile,
             Response::HTTP_OK,
             array(
                 'Content-Type'  => 'text/cache-manifest',
