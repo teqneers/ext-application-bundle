@@ -13,3 +13,10 @@ tq_extjs_application_manifest:
         _format: json
     requirements:
         build:  \w+
+
+tq_extjs_application_appcache:
+    path:      /{build}/cache.appcache
+    defaults:
+        _controller: tq_extjs.controller:appCacheAction
+    requirements:
+        build:  \w+

@@ -134,4 +134,57 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
         $controller->manifestAction('desktop', $request);
     }
+
+    public function testAppCacheAction()
+    {
+        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        $application = $this->getMock(
+            'TQ\ExtJS\Application\Application',
+            array('getAppCacheFile'),
+            array(),
+            '',
+            false
+        );
+
+        $application->expects($this->once())
+                    ->method('getAppCacheFile')
+                    ->with(
+                        $this->equalTo('desktop')
+                    )
+                    ->willReturn(new \SplFileInfo(__DIR__ . '/__files/cache.appcache'));
+
+        $controller = new ExtJSController($application);
+        /** @var BinaryFileResponse $response */
+        $response = $controller->appCacheAction('desktop');
+
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(__DIR__ . '/__files/cache.appcache', $response->getFile()
+                                                                        ->getPathname());
+        $this->assertEquals('text/cache-manifest', $response->headers->get('Content-Type'));
+    }
+
+    public function testAppCacheActionFailsIfFileNotFound()
+    {
+        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        $application = $this->getMock(
+            'TQ\ExtJS\Application\Application',
+            array('getAppCacheFile'),
+            array(),
+            '',
+            false
+        );
+
+        $application->expects($this->once())
+                    ->method('getAppCacheFile')
+                    ->with(
+                        $this->equalTo('desktop')
+                    )
+                    ->willThrowException(new FileNotFoundException('does-not-exist'));
+
+        $controller = new ExtJSController($application);
+
+        $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+        $controller->appCacheAction('desktop');
+    }
 }

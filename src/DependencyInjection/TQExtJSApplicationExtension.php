@@ -45,8 +45,10 @@ class TQExtJSApplicationExtension extends Extension
                 $build['production_base'],
                 $build['development_manifest'],
                 $build['development_microloader'],
+                $build['development_appcache'],
                 $build['production_manifest'],
-                $build['production_microloader']
+                $build['production_microloader'],
+                $build['production_appcache']
             ]);
         }
     }

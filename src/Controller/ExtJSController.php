@@ -88,4 +88,28 @@ class ExtJSController
             )
         );
     }
+
+    /**
+     * @param string $build
+     * @return Response
+     */
+    public function appCacheAction($build)
+    {
+        try {
+            $bootstrapFile = $this->application->getAppCacheFile($build);
+        } catch (FileNotFoundException $e) {
+            throw new NotFoundHttpException('Not Found', $e);
+        }
+
+        return new BinaryFileResponse(
+            $bootstrapFile,
+            Response::HTTP_OK,
+            array(
+                'Content-Type'  => 'text/cache-manifest',
+                'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+                'Pragma'        => 'public',
+                'Expires'       => 0,
+            )
+        );
+    }
 }

@@ -53,6 +53,10 @@ class ExtJSExtension extends \Twig_Extension
                 'extjsBootstrapPath',
                 [$this, 'getBootstrapPath']
             ),
+            new \Twig_SimpleFunction(
+                'extjsAppCachePath',
+                [$this, 'getAppCachePath']
+            ),
         ];
     }
 
@@ -65,7 +69,7 @@ class ExtJSExtension extends \Twig_Extension
     }
 
     /**
-     * @param null $build
+     * @param string|null $build
      * @return string
      */
     public function getManifestPath($build = null)
@@ -76,13 +80,28 @@ class ExtJSExtension extends \Twig_Extension
     }
 
     /**
-     * @param null $build
+     * @param string|null $build
      * @return string
      */
     public function getBootstrapPath($build = null)
     {
         return $this->generator->generate('tq_extjs_application_bootstrap', [
             'build' => $build ?: $this->application->getDefaultBuild()
+        ]);
+    }
+
+    /**
+     * @param string|null $build
+     * @return string
+     */
+    public function getAppCachePath($build = null)
+    {
+        $build = $build ?: $this->application->getDefaultBuild();
+        if (!$this->application->hasAppCache($build)) {
+            return '';
+        }
+        return $this->generator->generate('tq_extjs_application_appcache', [
+            'build' => $build
         ]);
     }
 }

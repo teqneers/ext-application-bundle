@@ -142,6 +142,41 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
         $response->sendContent();
     }
 
+    public function testAppCacheActionProduction()
+    {
+        $kernel = new AppKernel('prod', false);
+        $kernel->boot();
+
+        /** @var ExtJSController $controller */
+        $controller = $kernel->getContainer()
+                             ->get('tq_extjs.controller');
+        $request    = new Request();
+        /** @var BinaryFileResponse $response */
+        $response = $controller->appCacheAction('desktop');
+
+        $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(__DIR__ . '/__files/web/MyApp/cache.appcache', $response->getFile()
+                                                                                    ->getPathname());
+        $this->assertEquals('text/cache-manifest', $response->headers->get('Content-Type'));
+
+        $this->expectOutputString(file_get_contents(__DIR__ . '/__files/web/MyApp/cache.appcache'));
+        $response->prepare($request);
+        $response->sendContent();
+    }
+
+    public function testAppCacheActionDevelopment()
+    {
+        $kernel = new AppKernel('dev', false);
+        $kernel->boot();
+
+        /** @var ExtJSController $controller */
+        $controller = $kernel->getContainer()
+                             ->get('tq_extjs.controller');
+        /** @var BinaryFileResponse $response */
+        $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+        $controller->appCacheAction('desktop');
+    }
 
     protected function clearTempDir()
     {

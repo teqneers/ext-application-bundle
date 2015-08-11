@@ -90,4 +90,77 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         $extension = new ExtJSExtension($urlGenerator, $application);
         $this->assertEquals('url', $extension->getBootstrapPath());
     }
+
+    public function testGetAppCachePath()
+    {
+        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        $application = $this->getMock(
+            'TQ\ExtJS\Application\Application',
+            array('getDefaultBuild', 'hasAppCache'),
+            array(),
+            '',
+            false
+        );
+
+        $application->expects($this->once())
+                    ->method('getDefaultBuild')
+                    ->willReturn('desktop');
+
+        $application->expects($this->once())
+                    ->method('hasAppCache')
+                    ->with($this->equalTo('desktop'))
+                    ->willReturn(true);
+
+        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        $urlGenerator = $this->getMock(
+            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
+            array('generate', 'setContext', 'getContext')
+        );
+
+        $urlGenerator->expects($this->once())
+                     ->method('generate')
+                     ->with(
+                         $this->equalTo('tq_extjs_application_appcache'),
+                         $this->equalTo([
+                             'build' => 'desktop'
+                         ])
+                     )
+                     ->willReturn('url');
+
+        $extension = new ExtJSExtension($urlGenerator, $application);
+        $this->assertEquals('url', $extension->getAppCachePath());
+    }
+
+    public function testGetAppCachePathWhenNull()
+    {
+        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        $application = $this->getMock(
+            'TQ\ExtJS\Application\Application',
+            array('getDefaultBuild', 'hasAppCache'),
+            array(),
+            '',
+            false
+        );
+
+        $application->expects($this->once())
+                    ->method('getDefaultBuild')
+                    ->willReturn('desktop');
+
+        $application->expects($this->once())
+                    ->method('hasAppCache')
+                    ->with($this->equalTo('desktop'))
+                    ->willReturn(false);
+
+        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        $urlGenerator = $this->getMock(
+            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
+            array('generate', 'setContext', 'getContext')
+        );
+
+        $urlGenerator->expects($this->never())
+                     ->method('generate');
+
+        $extension = new ExtJSExtension($urlGenerator, $application);
+        $this->assertEquals('', $extension->getAppCachePath());
+    }
 }
