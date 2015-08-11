@@ -10,6 +10,7 @@
 namespace TQ\Bundle\ExtJSApplicationBundle\Twig;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use TQ\ExtJS\Application\Application;
 
 /**
  * Class ExtJSExtension
@@ -24,11 +25,18 @@ class ExtJSExtension extends \Twig_Extension
     private $generator;
 
     /**
-     * @param UrlGeneratorInterface $generator
+     * @var Application
      */
-    public function __construct(UrlGeneratorInterface $generator)
+    private $application;
+
+    /**
+     * @param UrlGeneratorInterface $generator
+     * @param Application           $application
+     */
+    public function __construct(UrlGeneratorInterface $generator, Application $application)
     {
-        $this->generator = $generator;
+        $this->generator   = $generator;
+        $this->application = $application;
     }
 
     /**
@@ -57,18 +65,24 @@ class ExtJSExtension extends \Twig_Extension
     }
 
     /**
+     * @param null $build
      * @return string
      */
-    public function getManifestPath()
+    public function getManifestPath($build = null)
     {
-        return $this->generator->generate('tq_extjs_application_manifest');
+        return $this->generator->generate('tq_extjs_application_manifest', [
+            'build' => $build ?: $this->application->getDefaultBuild()
+        ]);
     }
 
     /**
+     * @param null $build
      * @return string
      */
-    public function getBootstrapPath()
+    public function getBootstrapPath($build = null)
     {
-        return $this->generator->generate('tq_extjs_application_bootstrap');
+        return $this->generator->generate('tq_extjs_application_bootstrap', [
+            'build' => $build ?: $this->application->getDefaultBuild()
+        ]);
     }
 }

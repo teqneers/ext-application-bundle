@@ -50,7 +50,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         $request    = new Request();
         /** @var BinaryFileResponse $response */
-        $response = $controller->bootstrapAction();
+        $response = $controller->bootstrapAction('desktop');
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -73,7 +73,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         $request    = new Request();
         /** @var StreamedResponse $response */
-        $response = $controller->manifestAction($request);
+        $response = $controller->manifestAction('desktop', $request);
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\StreamedResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -101,7 +101,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         $request    = new Request();
         /** @var BinaryFileResponse $response */
-        $response = $controller->bootstrapAction();
+        $response = $controller->bootstrapAction('desktop');
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -124,7 +124,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         $request    = new Request();
         /** @var StreamedResponse $response */
-        $response = $controller->manifestAction($request);
+        $response = $controller->manifestAction('desktop', $request);
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\StreamedResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());

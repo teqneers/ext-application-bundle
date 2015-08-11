@@ -39,12 +39,13 @@ class ExtJSController
     }
 
     /**
+     * @param string $build
      * @return Response
      */
-    public function bootstrapAction()
+    public function bootstrapAction($build)
     {
         try {
-            $bootstrapFile = $this->application->getMicroLoaderFile();
+            $bootstrapFile = $this->application->getMicroLoaderFile($build);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Not Found', $e);
         }
@@ -62,13 +63,14 @@ class ExtJSController
     }
 
     /**
+     * @param string  $build
      * @param Request $request
      * @return Response
      */
-    public function manifestAction(Request $request)
+    public function manifestAction($build, Request $request)
     {
         try {
-            $manifest = $this->application->getManifest($request->getBasePath());
+            $manifest = $this->application->getManifest($request->getBasePath(), $build);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Not Found', $e);
         }

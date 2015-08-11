@@ -32,19 +32,31 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $processor     = new Processor();
         $config        = $processor->processConfiguration($configuration, array(
             array(
-                'app_name' => 'my-app'
+                'builds' => array(
+                    'desktop' => array(
+                        'development_base' => 'my-app',
+                        'production_base'  => 'app'
+                    )
+                )
             )
         ));
 
         $this->assertEquals(
             array(
-                'app_name'       => 'my-app',
-                'app_url'        => 'app',
-                'workspace_url'  => '../workspace',
-                'workspace_path' => '%kernel.root_dir%/../workspace',
-                'web_path'       => '%kernel.root_dir%/../web',
-                'bootstrap_name' => 'bootstrap.js',
-                'manifest_name'  => 'manifest.json'
+                'workspace_path'          => '%kernel.root_dir%/../workspace',
+                'relative_wWorkspace_url' => '../workspace',
+                'web_path'                => '%kernel.root_dir%/../web',
+                'relative_web_url'        => '/',
+                'builds'                  => array(
+                    'desktop' => array(
+                        'development_base'        => 'my-app',
+                        'production_base'         => 'app',
+                        'development_manifest'    => 'bootstrap.json',
+                        'development_microloader' => 'bootstrap.js',
+                        'production_manifest'     => 'app.json',
+                        'production_microloader'  => 'bootstrap.js',
+                    )
+                )
             ),
             $config
         );
@@ -57,7 +69,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException(
             'Symfony\Component\Config\Definition\Exception\InvalidConfigurationException',
-            'The child node "app_name" at path "tq_ext_js_application" must be configured.'
+            'The child node "builds" at path "tq_ext_js_application" must be configured.'
         );
 
         $processor->processConfiguration($configuration, array(array()));

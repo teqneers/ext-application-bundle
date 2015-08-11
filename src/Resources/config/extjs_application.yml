@@ -9,13 +9,10 @@ services:
     tq_extjs.application_configuration:
         class: TQ\ExtJS\Application\Configuration\ApplicationConfiguration
         arguments:
-            - ~
-            - ~
-            - ~
-            - ~
-            - ~
-            - ~
-            - ~
+            - ~ # workspace path
+            - ~ # relative workspace url
+            - ~ # web path
+            - ~ # relative web url
         public: false
 
     tq_extjs.manifest_loader:
@@ -28,6 +25,6 @@ services:
 
     tq_extjs.twig.extension:
         class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtJSExtension
-        arguments: [ @router ]
+        arguments: [ @router, @tq_extjs.application ]
         tags:
             - { name: twig.extension }

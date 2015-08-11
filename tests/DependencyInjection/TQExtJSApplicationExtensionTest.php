@@ -40,7 +40,12 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'app_name' => 'my-app'
+                'builds' => array(
+                    'desktop' => array(
+                        'development_base' => 'my-app',
+                        'production_base'  => 'app'
+                    )
+                )
             )
         ), 'dev', true);
 
@@ -52,7 +57,7 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             sys_get_temp_dir() . '/ext-application-bundle/app/../workspace/my-app',
-            $application->getApplicationPath()
+            $application->getBasePath()
         );
     }
 
@@ -60,7 +65,12 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'app_name' => 'my-app'
+                'builds' => array(
+                    'desktop' => array(
+                        'development_base' => 'my-app',
+                        'production_base'  => 'app'
+                    )
+                )
             )
         ), 'prod', true);
 
@@ -72,7 +82,7 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             sys_get_temp_dir() . '/ext-application-bundle/app/../web/app',
-            $application->getApplicationPath()
+            $application->getBasePath()
         );
     }
 
@@ -80,7 +90,12 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'app_name' => 'my-app'
+                'builds' => array(
+                    'desktop' => array(
+                        'development_base' => 'my-app',
+                        'production_base'  => 'app'
+                    )
+                )
             )
         ), 'dev', false);
 
@@ -92,7 +107,7 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             sys_get_temp_dir() . '/ext-application-bundle/app/../workspace/my-app',
-            $application->getApplicationPath()
+            $application->getBasePath()
         );
     }
 
@@ -100,7 +115,12 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'app_name' => 'my-app'
+                'builds' => array(
+                    'desktop' => array(
+                        'development_base' => 'my-app',
+                        'production_base'  => 'app'
+                    )
+                )
             )
         ), 'prod', false);
 
@@ -112,7 +132,7 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         );
         $this->assertEquals(
             sys_get_temp_dir() . '/ext-application-bundle/app/../web/app',
-            $application->getApplicationPath()
+            $application->getBasePath()
         );
     }
 

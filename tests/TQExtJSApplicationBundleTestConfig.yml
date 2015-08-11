@@ -5,7 +5,13 @@ framework:
         strict_requirements: ~
 
 tq_ext_js_application:
-    app_name: my-app
-    app_url: MyApp
     workspace_path: %kernel.root_dir%/__files/workspace
     web_path: %kernel.root_dir%/__files/web
+    builds:
+        desktop:
+            development_base: my-app
+            production_base: MyApp
+            development_manifest: manifest.json
+            development_microloader: bootstrap.js
+            production_manifest: manifest.json
+            production_microloader: bootstrap.js

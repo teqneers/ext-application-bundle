@@ -38,11 +38,14 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $application->expects($this->once())
                     ->method('getMicroLoaderFile')
+                    ->with(
+                        $this->equalTo('desktop')
+                    )
                     ->willReturn(new \SplFileInfo(__DIR__ . '/__files/bootstrap.js'));
 
         $controller = new ExtJSController($application);
         /** @var BinaryFileResponse $response */
-        $response = $controller->bootstrapAction();
+        $response = $controller->bootstrapAction('desktop');
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -64,12 +67,15 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $application->expects($this->once())
                     ->method('getMicroLoaderFile')
+                    ->with(
+                        $this->equalTo('desktop')
+                    )
                     ->willThrowException(new FileNotFoundException('does-not-exist'));
 
         $controller = new ExtJSController($application);
 
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
-        $controller->bootstrapAction();
+        $controller->bootstrapAction('desktop');
     }
 
     public function testManifestAction()
@@ -87,12 +93,15 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $application->expects($this->once())
                     ->method('getManifest')
-                    ->with($this->equalTo($request->getBasePath()))
+                    ->with(
+                        $this->equalTo($request->getBasePath()),
+                        $this->equalTo('desktop')
+                    )
                     ->willReturn(new Manifest(array()));
 
         $controller = new ExtJSController($application);
         /** @var StreamedResponse $response */
-        $response = $controller->manifestAction($request);
+        $response = $controller->manifestAction('desktop', $request);
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\StreamedResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -110,13 +119,19 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
             false
         );
 
+        $request = new Request();
+
         $application->expects($this->once())
                     ->method('getManifest')
+                    ->with(
+                        $this->equalTo($request->getBasePath()),
+                        $this->equalTo('desktop')
+                    )
                     ->willThrowException(new FileNotFoundException('does-not-exist'));
 
         $controller = new ExtJSController($application);
 
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
-        $controller->manifestAction(new Request());
+        $controller->manifestAction('desktop', $request);
     }
 }

@@ -1,11 +1,15 @@
 tq_extjs_application_bootstrap:
-    path:      /bootstrap.js
+    path:      /{build}/bootstrap.js
     defaults:
         _controller: tq_extjs.controller:bootstrapAction
         _format: js
+    requirements:
+        build:  \w+
 
 tq_extjs_application_manifest:
-    path:      /manifest.json
+    path:      /{build}/manifest.json
     defaults:
         _controller: tq_extjs.controller:manifestAction
         _format: json
+    requirements:
+        build:  \w+

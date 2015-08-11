@@ -33,12 +33,21 @@ class TQExtJSApplicationExtension extends Extension
         $config        = $this->processConfiguration($configuration, $config);
 
         $applicationDefinition = $container->getDefinition('tq_extjs.application_configuration');
-        $applicationDefinition->replaceArgument(0, $config['app_name']);
-        $applicationDefinition->replaceArgument(1, $config['app_url']);
-        $applicationDefinition->replaceArgument(2, $config['workspace_url']);
-        $applicationDefinition->replaceArgument(3, $config['workspace_path']);
-        $applicationDefinition->replaceArgument(4, $config['web_path']);
-        $applicationDefinition->replaceArgument(5, $config['bootstrap_name']);
-        $applicationDefinition->replaceArgument(6, $config['manifest_name']);
+        $applicationDefinition->replaceArgument(0, $config['workspace_path']);
+        $applicationDefinition->replaceArgument(1, $config['relative_wWorkspace_url']);
+        $applicationDefinition->replaceArgument(2, $config['web_path']);
+        $applicationDefinition->replaceArgument(3, $config['relative_web_url']);
+
+        foreach ($config['builds'] as $name => $build) {
+            $applicationDefinition->addMethodCall('addBuild', [
+                $name,
+                $build['development_base'],
+                $build['production_base'],
+                $build['development_manifest'],
+                $build['development_microloader'],
+                $build['production_manifest'],
+                $build['production_microloader']
+            ]);
+        }
     }
 }
