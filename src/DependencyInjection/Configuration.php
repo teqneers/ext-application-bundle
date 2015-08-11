@@ -59,7 +59,7 @@ class Configuration implements ConfigurationInterface
                                 ->cannotBeEmpty()
                             ->end()
                             ->scalarNode('development_manifest')
-                                ->defaultValue('bootstrap.json')
+                                ->defaultValue('manifest.json')
                             ->end()
                             ->scalarNode('development_microloader')
                                 ->defaultValue('bootstrap.js')

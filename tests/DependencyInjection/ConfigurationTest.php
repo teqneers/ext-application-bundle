@@ -51,7 +51,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                     'desktop' => array(
                         'development_base'        => 'my-app',
                         'production_base'         => 'app',
-                        'development_manifest'    => 'bootstrap.json',
+                        'development_manifest'    => 'manifest.json',
                         'development_microloader' => 'bootstrap.js',
                         'production_manifest'     => 'bootstrap.json',
                         'production_microloader'  => 'bootstrap.js',
