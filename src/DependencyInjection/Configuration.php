@@ -65,7 +65,7 @@ class Configuration implements ConfigurationInterface
                                 ->defaultValue('bootstrap.js')
                             ->end()
                             ->scalarNode('production_manifest')
-                                ->defaultValue('app.json')
+                                ->defaultValue('bootstrap.json')
                             ->end()
                             ->scalarNode('production_microloader')
                                 ->defaultValue('bootstrap.js')

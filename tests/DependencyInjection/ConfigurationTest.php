@@ -53,7 +53,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                         'production_base'         => 'app',
                         'development_manifest'    => 'bootstrap.json',
                         'development_microloader' => 'bootstrap.js',
-                        'production_manifest'     => 'app.json',
+                        'production_manifest'     => 'bootstrap.json',
                         'production_microloader'  => 'bootstrap.js',
                     )
                 )
