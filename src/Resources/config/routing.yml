@@ -1,22 +1,25 @@
 tq_extjs_application_bootstrap:
-    path:      /bootstrap-{build}.js
+    path:      /bootstrap-{build}{dev}.js
     defaults:
         _controller: tq_extjs.controller:bootstrapAction
         _format: js
     requirements:
         build:  \w+
+        dev: (-dev|)
 
 tq_extjs_application_manifest:
-    path:      /manifest-{build}.json
+    path:      /manifest-{build}{dev}.json
     defaults:
         _controller: tq_extjs.controller:manifestAction
         _format: json
     requirements:
         build:  \w+
+        dev: (-dev|)
 
 tq_extjs_application_appcache:
-    path:      /cache-{build}.appcache
+    path:      /cache-{build}{dev}.appcache
     defaults:
         _controller: tq_extjs.controller:appCacheAction
     requirements:
         build:  \w+
+        dev: (-dev|)

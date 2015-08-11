@@ -25,7 +25,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
         $application = $this->getMock(
             'TQ\ExtJS\Application\Application',
-            array('getDefaultBuild'),
+            array('getDefaultBuild', 'isDevelopment'),
             array(),
             '',
             false
@@ -34,6 +34,10 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         $application->expects($this->once())
                     ->method('getDefaultBuild')
                     ->willReturn('desktop');
+
+        $application->expects($this->once())
+                    ->method('isDevelopment')
+                    ->willReturn(false);
 
         /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
         $urlGenerator = $this->getMock(
@@ -46,7 +50,8 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
                      ->with(
                          $this->equalTo('tq_extjs_application_manifest'),
                          $this->equalTo([
-                             'build' => 'desktop'
+                             'build' => 'desktop',
+                             'dev'   => ''
                          ])
                      )
                      ->willReturn('url');
@@ -61,7 +66,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
         $application = $this->getMock(
             'TQ\ExtJS\Application\Application',
-            array('getDefaultBuild'),
+            array('getDefaultBuild', 'isDevelopment'),
             array(),
             '',
             false
@@ -70,6 +75,10 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         $application->expects($this->once())
                     ->method('getDefaultBuild')
                     ->willReturn('desktop');
+
+        $application->expects($this->once())
+                    ->method('isDevelopment')
+                    ->willReturn(false);
 
         /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
         $urlGenerator = $this->getMock(
@@ -82,7 +91,8 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
                      ->with(
                          $this->equalTo('tq_extjs_application_bootstrap'),
                          $this->equalTo([
-                             'build' => 'desktop'
+                             'build' => 'desktop',
+                             'dev'   => ''
                          ])
                      )
                      ->willReturn('url');
@@ -96,7 +106,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
         $application = $this->getMock(
             'TQ\ExtJS\Application\Application',
-            array('getDefaultBuild', 'hasAppCache'),
+            array('getDefaultBuild', 'isDevelopment', 'hasAppCache'),
             array(),
             '',
             false
@@ -105,6 +115,11 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         $application->expects($this->once())
                     ->method('getDefaultBuild')
                     ->willReturn('desktop');
+
+
+        $application->expects($this->once())
+                    ->method('isDevelopment')
+                    ->willReturn(false);
 
         $application->expects($this->once())
                     ->method('hasAppCache')
@@ -122,7 +137,8 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
                      ->with(
                          $this->equalTo('tq_extjs_application_appcache'),
                          $this->equalTo([
-                             'build' => 'desktop'
+                             'build' => 'desktop',
+                             'dev'   => ''
                          ])
                      )
                      ->willReturn('url');
@@ -136,7 +152,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
         $application = $this->getMock(
             'TQ\ExtJS\Application\Application',
-            array('getDefaultBuild', 'hasAppCache'),
+            array('getDefaultBuild', 'isDevelopment', 'hasAppCache'),
             array(),
             '',
             false
@@ -145,6 +161,9 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         $application->expects($this->once())
                     ->method('getDefaultBuild')
                     ->willReturn('desktop');
+
+        $application->expects($this->never())
+                    ->method('isDevelopment');
 
         $application->expects($this->once())
                     ->method('hasAppCache')

@@ -75,7 +75,8 @@ class ExtJSExtension extends \Twig_Extension
     public function getManifestPath($build = null)
     {
         return $this->generator->generate('tq_extjs_application_manifest', [
-            'build' => $build ?: $this->application->getDefaultBuild()
+            'build' => $build ?: $this->application->getDefaultBuild(),
+            'dev'   => $this->application->isDevelopment() ? '-dev' : ''
         ]);
     }
 
@@ -86,7 +87,8 @@ class ExtJSExtension extends \Twig_Extension
     public function getBootstrapPath($build = null)
     {
         return $this->generator->generate('tq_extjs_application_bootstrap', [
-            'build' => $build ?: $this->application->getDefaultBuild()
+            'build' => $build ?: $this->application->getDefaultBuild(),
+            'dev'   => $this->application->isDevelopment() ? '-dev' : ''
         ]);
     }
 
@@ -101,7 +103,8 @@ class ExtJSExtension extends \Twig_Extension
             return '';
         }
         return $this->generator->generate('tq_extjs_application_appcache', [
-            'build' => $build
+            'build' => $build,
+            'dev'   => $this->application->isDevelopment() ? '-dev' : ''
         ]);
     }
 }
