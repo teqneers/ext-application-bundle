@@ -531,12 +531,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/teqneers/ext-application.git",
-                "reference": "138a0250f68c91695b1810427ae6aae78f920e2a"
+                "reference": "03430c34afc908609f066c97597cd8ff9c276f7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/138a0250f68c91695b1810427ae6aae78f920e2a",
-                "reference": "138a0250f68c91695b1810427ae6aae78f920e2a",
+                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/03430c34afc908609f066c97597cd8ff9c276f7a",
+                "reference": "03430c34afc908609f066c97597cd8ff9c276f7a",
                 "shasum": ""
             },
             "require": {
@@ -564,7 +564,7 @@
             ],
             "description": "A base component to integrate Sencha Ext JS into a PHP application",
             "homepage": "https://github.com/teqneers/ext-application",
-            "time": "2015-08-12 12:57:43"
+            "time": "2015-08-31 11:22:17"
         },
         {
             "name": "twig/twig",
