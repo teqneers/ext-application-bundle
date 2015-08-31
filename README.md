@@ -16,12 +16,14 @@ or add the package to your composer.json file directly.
 
 After you have installed the package, you just need to add the bundle to your AppKernel.php file:
 
-    // in AppKernel::registerBundles()
-    $bundles = array(
-        // ...
-        new TQ\Bundle\ExtJSApplicationBundle\TQExtJSApplicationBundle(),
-        // ...
-    );
+```php
+// in AppKernel::registerBundles()
+$bundles = array(
+    // ...
+    new TQ\Bundle\ExtJSApplicationBundle\TQExtJSApplicationBundle(),
+    // ...
+);
+```
 
 ## Configuration
 
@@ -109,25 +111,26 @@ In this case you can configure the bundle accordingly
 Using the Twig extension provided by the bundle you can easily integrate the Ext JS application resources into your
 application templates.
 
-    <!DOCTYPE HTML>
-    <html manifest="{{ extjsAppCachePath() }}" lang="en">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta charset="UTF-8">
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>Welcome!</title>
+```twig
+<!DOCTYPE HTML>
+<html manifest="{{ extjsAppCachePath() }}" lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Welcome!</title>
 
-        <script type="text/javascript">
-            var Ext = Ext || {};
-            Ext.manifest = '{{ extjsManifestPath()|e('js') }}';
-        </script>
-        <script id="microloader" type="text/javascript" src="{{ extjsBootstrapPath() }}"></script>
-    </head>
-    <body>
-    </body>
-    </html>
-
+    <script type="text/javascript">
+        var Ext = Ext || {};
+        Ext.manifest = '{{ extjsManifestPath()|e('js') }}';
+    </script>
+    <script id="microloader" type="text/javascript" src="{{ extjsBootstrapPath() }}"></script>
+</head>
+<body>
+</body>
+</html>
+```
 
 ## License
 
