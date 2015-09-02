@@ -57,6 +57,10 @@ class ExtJSExtension extends \Twig_Extension
                 'extjsAppCachePath',
                 [$this, 'getAppCachePath']
             ),
+            new \Twig_SimpleFunction(
+                'extjsApplicationId',
+                [$this, 'getApplicationId']
+            ),
         ];
     }
 
@@ -106,5 +110,13 @@ class ExtJSExtension extends \Twig_Extension
             'build' => $build,
             'dev'   => $this->application->isDevelopment() ? '-dev' : ''
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getApplicationId()
+    {
+        return $this->application->getApplicationId();
     }
 }

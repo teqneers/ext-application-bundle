@@ -182,4 +182,29 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         $extension = new ExtJSExtension($urlGenerator, $application);
         $this->assertEquals('', $extension->getAppCachePath());
     }
+
+    public function testGetApplicationId()
+    {
+        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        $application = $this->getMock(
+            'TQ\ExtJS\Application\Application',
+            array('getApplicationId'),
+            array(),
+            '',
+            false
+        );
+
+        $application->expects($this->once())
+                    ->method('getApplicationId')
+                    ->willReturn('this-is-the-application-id');
+
+        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        $urlGenerator = $this->getMock(
+            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
+            array('generate', 'setContext', 'getContext')
+        );
+
+        $extension = new ExtJSExtension($urlGenerator, $application);
+        $this->assertEquals('this-is-the-application-id', $extension->getApplicationId());
+    }
 }
