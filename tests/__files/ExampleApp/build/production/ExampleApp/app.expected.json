@@ -80,12 +80,12 @@
     },
     "js": [
         {
-            "path": "/MyApp/app.js"
+            "path": "/resources-desktop/app.js"
         }
     ],
     "css": [
         {
-            "path": "/MyApp/resources/MyApp-all.css",
+            "path": "/resources-desktop/resources/MyApp-all.css",
             "exclude": [
                 "fashion"
             ]

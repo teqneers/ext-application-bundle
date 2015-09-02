@@ -5,13 +5,16 @@ framework:
         strict_requirements: ~
 
 tq_ext_js_application:
-    workspace_path: %kernel.root_dir%/__files/workspace
-    web_path: %kernel.root_dir%/__files/web
+    app_path: '%kernel.root_dir%/__files/ExampleApp'
     builds:
         desktop:
-            development_base: my-app
-            production_base: MyApp
-            development_manifest: manifest.json
-            development_microloader: bootstrap.js
-            production_manifest: manifest.json
-            production_microloader: bootstrap.js
+            development:
+                build_path:  build/development/ExampleApp
+                microloader: /bootstrap.js
+                manifest:    /bootstrap.json
+                app_cache:   ~
+            production:
+                build_path:  build/production/ExampleApp
+                microloader: microloader.js
+                manifest:    app.json
+                app_cache:   cache.appcache

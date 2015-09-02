@@ -54,11 +54,14 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals(__DIR__ . '/__files/web/MyApp/bootstrap.js', $response->getFile()
-                                                                                  ->getPathname());
+        $this->assertEquals(
+            __DIR__ . '/__files/ExampleApp/build/production/ExampleApp/microloader.js',
+            $response->getFile()
+                     ->getPathname()
+        );
         $this->assertEquals('application/javascript', $response->headers->get('Content-Type'));
 
-        $this->expectOutputString(file_get_contents(__DIR__ . '/__files/web/MyApp/bootstrap.js'));
+        $this->expectOutputString(file_get_contents(__DIR__ . '/__files/ExampleApp/build/production/ExampleApp/microloader.js'));
         $response->prepare($request);
         $response->sendContent();
     }
@@ -82,7 +85,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputString(
             json_encode(
                 json_decode(
-                    file_get_contents(__DIR__ . '/__files/web/MyApp/manifest.expected.json'),
+                    file_get_contents(__DIR__ . '/__files/ExampleApp/build/production/ExampleApp/app.expected.json'),
                     true
                 )
             )
@@ -105,11 +108,14 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals(__DIR__ . '/__files/workspace/my-app/bootstrap.js', $response->getFile()
-                                                                                         ->getPathname());
+        $this->assertEquals(
+            __DIR__ . '/__files/ExampleApp/bootstrap.js',
+            $response->getFile()
+                     ->getPathname()
+        );
         $this->assertEquals('application/javascript', $response->headers->get('Content-Type'));
 
-        $this->expectOutputString(file_get_contents(__DIR__ . '/__files/workspace/my-app/bootstrap.js'));
+        $this->expectOutputString(file_get_contents(__DIR__ . '/__files/ExampleApp/bootstrap.js'));
         $response->prepare($request);
         $response->sendContent();
     }
@@ -133,7 +139,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputString(
             json_encode(
                 json_decode(
-                    file_get_contents(__DIR__ . '/__files/workspace/my-app/manifest.expected.json'),
+                    file_get_contents(__DIR__ . '/__files/ExampleApp/bootstrap.expected.json'),
                     true
                 )
             )
@@ -156,11 +162,14 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals(__DIR__ . '/__files/web/MyApp/cache.appcache', $response->getFile()
-                                                                                    ->getPathname());
+        $this->assertEquals(
+            __DIR__ . '/__files/ExampleApp/build/production/ExampleApp/cache.appcache',
+            $response->getFile()
+                     ->getPathname()
+        );
         $this->assertEquals('text/cache-manifest', $response->headers->get('Content-Type'));
 
-        $this->expectOutputString(file_get_contents(__DIR__ . '/__files/web/MyApp/cache.appcache'));
+        $this->expectOutputString(file_get_contents(__DIR__ . '/__files/ExampleApp/build/production/ExampleApp/cache.appcache'));
         $response->prepare($request);
         $response->sendContent();
     }
