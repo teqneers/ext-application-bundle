@@ -39,10 +39,11 @@ class ExtJSController
     }
 
     /**
-     * @param string $build
+     * @param string  $build
+     * @param Request $request
      * @return Response
      */
-    public function bootstrapAction($build)
+    public function bootstrapAction($build, Request $request)
     {
         try {
             $bootstrapFile = $this->application->getMicroLoaderFile($build);
@@ -50,7 +51,7 @@ class ExtJSController
             throw new NotFoundHttpException('Not Found', $e);
         }
 
-        return $this->createBinaryFileResponse($bootstrapFile, 'application/javascript');
+        return $this->createBinaryFileResponse($request, $bootstrapFile, 'application/javascript');
     }
 
     /**
@@ -89,10 +90,11 @@ class ExtJSController
     }
 
     /**
-     * @param string $build
+     * @param string  $build
+     * @param Request $request
      * @return Response
      */
-    public function appCacheAction($build)
+    public function appCacheAction($build, Request $request)
     {
         try {
             $appCacheFile = $this->application->getAppCacheFile($build);
@@ -100,15 +102,16 @@ class ExtJSController
             throw new NotFoundHttpException('Not Found', $e);
         }
 
-        return $this->createBinaryFileResponse($appCacheFile, 'text/cache-manifest');
+        return $this->createBinaryFileResponse($request, $appCacheFile, 'text/cache-manifest');
     }
 
     /**
-     * @param string $build
-     * @param string $path
+     * @param string  $build
+     * @param string  $path
+     * @param Request $request
      * @return Response
      */
-    public function resourcesAction($build, $path)
+    public function resourcesAction($build, $path, Request $request)
     {
         try {
             $buildArtifact = $this->application->getBuildArtifact(str_replace('~', '..', $path), $build);
@@ -118,43 +121,61 @@ class ExtJSController
 
         $file = new \Symfony\Component\HttpFoundation\File\File($buildArtifact->getPathname());
 
-        if ($file->getExtension() == 'css') {
-            $contentType = 'text/css';
-        } elseif ($file->getExtension() == 'js') {
-            $contentType = 'text/javascript';
-        } elseif ($file->getExtension() == 'svg') {
-            $contentType = 'image/svg+xml';
-        } elseif ($file->getExtension() == 'ttf') {
-            $contentType = 'application/x-font-ttf';
-        } elseif ($file->getExtension() == 'otf') {
-            $contentType = 'application/x-font-opentype';
-        } elseif ($file->getExtension() == 'eot') {
-            $contentType = 'application/vnd.ms-fontobject';
-        } elseif ($file->getExtension() == 'woff') {
-            $contentType = 'application/font-woff';
-        } elseif ($file->getExtension() == 'woff2') {
-            $contentType = 'application/font-woff2';
-        } elseif ($file->getExtension() == 'sfnt') {
-            $contentType = 'application/font-sfnt';
-        } elseif ($mimeType = $file->getMimeType()) {
-            $contentType = $mimeType;
-        } else {
-            $contentType = 'text/plain';
+        switch ($file->getExtension()) {
+            case 'css':
+                $contentType = 'text/css';
+                break;
+            case 'js':
+                $contentType = 'text/javascript';
+                break;
+            case 'svg':
+                $contentType = 'image/svg+xml';
+                break;
+            case 'ttf':
+                $contentType = 'application/x-font-ttf';
+                break;
+            case 'otf':
+                $contentType = 'application/x-font-opentype';
+                break;
+            case 'eot':
+                $contentType = 'application/vnd.ms-fontobject';
+                break;
+            case 'woff':
+                $contentType = 'application/font-woff';
+                break;
+            case 'woff2':
+                $contentType = 'application/font-woff2';
+                break;
+            case 'sfnt':
+                $contentType = 'application/font-sfnt';
+                break;
+            default:
+                if ($mimeType = $file->getMimeType()) {
+                    $contentType = $mimeType;
+                } else {
+                    $contentType = 'text/plain';
+                }
+                break;
         }
 
-        return $this->createBinaryFileResponse($file, $contentType);
+        return $this->createBinaryFileResponse($request, $file, $contentType);
     }
 
     /**
+     * @param Request      $request
      * @param \SplFileInfo $file
      * @param string       $contentType
      * @return BinaryFileResponse
      */
-    private function createBinaryFileResponse(\SplFileInfo $file, $contentType)
+    private function createBinaryFileResponse(Request $request, \SplFileInfo $file, $contentType)
     {
-        $response = new BinaryFileResponse($file);
-        $response->setPublic();
-        $response->headers->set('Content-Type', $contentType);
+        $response = new BinaryFileResponse($file, Response::HTTP_OK, array(
+            'Content-Type' => $contentType
+        ), true, null, true, true);
+
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
 
         return $response;
     }
