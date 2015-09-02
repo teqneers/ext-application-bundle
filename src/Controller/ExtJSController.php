@@ -11,7 +11,6 @@ namespace TQ\Bundle\ExtJSApplicationBundle\Controller;
 
 
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -50,24 +49,14 @@ class ExtJSController
             throw new NotFoundHttpException('Not Found', $e);
         }
 
-        return new BinaryFileResponse(
-            $bootstrapFile,
-            Response::HTTP_OK,
-            array(
-                'Content-Type'  => 'application/javascript',
-                'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
-                'Pragma'        => 'public',
-                'Expires'       => 0,
-            )
-        );
+        return $this->createBinaryFileResponse($bootstrapFile, 'application/javascript');
     }
 
     /**
-     * @param string  $build
-     * @param Request $request
+     * @param string $build
      * @return Response
      */
-    public function manifestAction($build, Request $request)
+    public function manifestAction($build)
     {
         try {
             $manifest = $this->application->getManifest($build);
@@ -101,16 +90,7 @@ class ExtJSController
             throw new NotFoundHttpException('Not Found', $e);
         }
 
-        return new BinaryFileResponse(
-            $appCacheFile,
-            Response::HTTP_OK,
-            array(
-                'Content-Type'  => 'text/cache-manifest',
-                'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
-                'Pragma'        => 'public',
-                'Expires'       => 0,
-            )
-        );
+        return $this->createBinaryFileResponse($appCacheFile, 'text/cache-manifest');
     }
 
     /**
@@ -138,8 +118,18 @@ class ExtJSController
             $contentType = 'text/plain';
         }
 
+        return $this->createBinaryFileResponse($file, $contentType);
+    }
+
+    /**
+     * @param \SplFileInfo $file
+     * @param string       $contentType
+     * @return BinaryFileResponse
+     */
+    private function createBinaryFileResponse(\SplFileInfo $file, $contentType)
+    {
         return new BinaryFileResponse(
-            $buildArtifact,
+            $file,
             Response::HTTP_OK,
             array(
                 'Content-Type'  => $contentType,
