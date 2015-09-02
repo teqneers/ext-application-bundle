@@ -111,7 +111,7 @@ class ExtJSController
     public function resourcesAction($build, $path)
     {
         try {
-            $buildArtifact = $this->application->getBuildArtifact($path, $build);
+            $buildArtifact = $this->application->getBuildArtifact(str_replace('~', '..', $path), $build);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Not Found', $e);
         }
@@ -122,6 +122,20 @@ class ExtJSController
             $contentType = 'text/css';
         } elseif ($file->getExtension() == 'js') {
             $contentType = 'text/javascript';
+        } elseif ($file->getExtension() == 'svg') {
+            $contentType = 'image/svg+xml';
+        } elseif ($file->getExtension() == 'ttf') {
+            $contentType = 'application/x-font-ttf';
+        } elseif ($file->getExtension() == 'otf') {
+            $contentType = 'application/x-font-opentype';
+        } elseif ($file->getExtension() == 'eot') {
+            $contentType = 'application/vnd.ms-fontobject';
+        } elseif ($file->getExtension() == 'woff') {
+            $contentType = 'application/font-woff';
+        } elseif ($file->getExtension() == 'woff2') {
+            $contentType = 'application/font-woff2';
+        } elseif ($file->getExtension() == 'sfnt') {
+            $contentType = 'application/font-sfnt';
         } elseif ($mimeType = $file->getMimeType()) {
             $contentType = $mimeType;
         } else {

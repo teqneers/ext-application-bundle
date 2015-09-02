@@ -43,7 +43,7 @@ class UrlPathMapper implements PathMapperInterface
         return $this->urlGenerator->generate('tq_extjs_application_resources', [
             'build' => $build,
             'dev'   => $development ? '-dev' : '',
-            'path'  => $path
+            'path'  => str_replace('..', '~', $path)
         ]);
     }
 }
