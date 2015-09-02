@@ -45,7 +45,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $controller = new ExtJSController($application);
         /** @var BinaryFileResponse $response */
-        $response = $controller->bootstrapAction('desktop');
+        $response = $controller->bootstrapAction('desktop', new Request());
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -75,7 +75,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
         $controller = new ExtJSController($application);
 
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
-        $controller->bootstrapAction('desktop');
+        $controller->bootstrapAction('desktop', new Request());
     }
 
     public function testManifestAction()
@@ -153,7 +153,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $controller = new ExtJSController($application);
         /** @var BinaryFileResponse $response */
-        $response = $controller->appCacheAction('desktop');
+        $response = $controller->appCacheAction('desktop', new Request());
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -183,6 +183,6 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
         $controller = new ExtJSController($application);
 
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
-        $controller->appCacheAction('desktop');
+        $controller->appCacheAction('desktop', new Request());
     }
 }

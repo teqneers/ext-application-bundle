@@ -50,7 +50,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         $request    = new Request();
         /** @var BinaryFileResponse $response */
-        $response = $controller->bootstrapAction('desktop');
+        $response = $controller->bootstrapAction('desktop', new Request());
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -104,7 +104,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         $request    = new Request();
         /** @var BinaryFileResponse $response */
-        $response = $controller->bootstrapAction('desktop');
+        $response = $controller->bootstrapAction('desktop', new Request());
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -158,7 +158,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         $request    = new Request();
         /** @var BinaryFileResponse $response */
-        $response = $controller->appCacheAction('desktop');
+        $response = $controller->appCacheAction('desktop', new Request());
 
         $this->assertInstanceOf('Symfony\Component\HttpFoundation\BinaryFileResponse', $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -184,7 +184,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
                              ->get('tq_extjs.controller');
         /** @var BinaryFileResponse $response */
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
-        $controller->appCacheAction('desktop');
+        $controller->appCacheAction('desktop', new Request());
     }
 
     protected function clearTempDir()
