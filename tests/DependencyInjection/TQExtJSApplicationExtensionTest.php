@@ -40,10 +40,15 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'builds' => array(
+                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'builds'   => array(
                     'desktop' => array(
-                        'development_base' => 'my-app',
-                        'production_base'  => 'app'
+                        'development' => array(
+                            'build_path' => 'build/development/ExampleApp'
+                        ),
+                        'production'  => array(
+                            'build_path' => 'build/production/ExampleApp'
+                        )
                     )
                 )
             )
@@ -56,8 +61,8 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
             $application
         );
         $this->assertEquals(
-            sys_get_temp_dir() . '/ext-application-bundle/app/../workspace/my-app',
-            $application->getBasePath()
+            sys_get_temp_dir() . '/ext-application-bundle/app/../ExampleApp/build/development/ExampleApp',
+            $application->getBuildPath()
         );
     }
 
@@ -65,10 +70,15 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'builds' => array(
+                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'builds'   => array(
                     'desktop' => array(
-                        'development_base' => 'my-app',
-                        'production_base'  => 'app'
+                        'development' => array(
+                            'build_path' => 'build/development/ExampleApp'
+                        ),
+                        'production'  => array(
+                            'build_path' => 'build/production/ExampleApp'
+                        )
                     )
                 )
             )
@@ -81,8 +91,8 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
             $application
         );
         $this->assertEquals(
-            sys_get_temp_dir() . '/ext-application-bundle/app/../web/app',
-            $application->getBasePath()
+            sys_get_temp_dir() . '/ext-application-bundle/app/../ExampleApp/build/production/ExampleApp',
+            $application->getBuildPath()
         );
     }
 
@@ -90,10 +100,15 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'builds' => array(
+                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'builds'   => array(
                     'desktop' => array(
-                        'development_base' => 'my-app',
-                        'production_base'  => 'app'
+                        'development' => array(
+                            'build_path' => 'build/development/ExampleApp'
+                        ),
+                        'production'  => array(
+                            'build_path' => 'build/production/ExampleApp'
+                        )
                     )
                 )
             )
@@ -106,8 +121,8 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
             $application
         );
         $this->assertEquals(
-            sys_get_temp_dir() . '/ext-application-bundle/app/../workspace/my-app',
-            $application->getBasePath()
+            sys_get_temp_dir() . '/ext-application-bundle/app/../ExampleApp/build/development/ExampleApp',
+            $application->getBuildPath()
         );
     }
 
@@ -115,10 +130,15 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'builds' => array(
+                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'builds'   => array(
                     'desktop' => array(
-                        'development_base' => 'my-app',
-                        'production_base'  => 'app'
+                        'development' => array(
+                            'build_path' => 'build/development/ExampleApp'
+                        ),
+                        'production'  => array(
+                            'build_path' => 'build/production/ExampleApp'
+                        )
                     )
                 )
             )
@@ -131,8 +151,8 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
             $application
         );
         $this->assertEquals(
-            sys_get_temp_dir() . '/ext-application-bundle/app/../web/app',
-            $application->getBasePath()
+            sys_get_temp_dir() . '/ext-application-bundle/app/../ExampleApp/build/production/ExampleApp',
+            $application->getBuildPath()
         );
     }
 
