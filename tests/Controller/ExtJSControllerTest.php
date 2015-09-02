@@ -96,7 +96,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
                     ->with(
                         $this->equalTo('desktop')
                     )
-                    ->willReturn(new Manifest(array()));
+                    ->willReturn(new Manifest(__DIR__ . '/__files/manifest.json', array()));
 
         $controller = new ExtJSController($application);
         /** @var StreamedResponse $response */

@@ -11,6 +11,7 @@ namespace TQ\Bundle\ExtJSApplicationBundle\Controller;
 
 
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -53,10 +54,11 @@ class ExtJSController
     }
 
     /**
-     * @param string $build
+     * @param string  $build
+     * @param Request $request
      * @return Response
      */
-    public function manifestAction($build)
+    public function manifestAction($build, Request $request)
     {
         try {
             $manifest = $this->application->getManifest($build);
@@ -64,18 +66,22 @@ class ExtJSController
             throw new NotFoundHttpException('Not Found', $e);
         }
 
-        return new StreamedResponse(
-            function () use ($manifest) {
-                echo $manifest;
-            },
-            Response::HTTP_OK,
-            array(
-                'Content-Type'  => 'application/json',
-                'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
-                'Pragma'        => 'public',
-                'Expires'       => 0,
-            )
-        );
+        $response = new StreamedResponse();
+        $response->setETag($manifest->computeETag())
+                 ->setLastModified(\DateTime::createFromFormat('U', $manifest->getMTime()))
+                 ->setPublic();
+
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
+        $response->setCallback(function () use ($manifest) {
+            echo $manifest->getContent();
+        });
+
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
@@ -128,15 +134,10 @@ class ExtJSController
      */
     private function createBinaryFileResponse(\SplFileInfo $file, $contentType)
     {
-        return new BinaryFileResponse(
-            $file,
-            Response::HTTP_OK,
-            array(
-                'Content-Type'  => $contentType,
-                'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
-                'Pragma'        => 'public',
-                'Expires'       => 0,
-            )
-        );
+        $response = new BinaryFileResponse($file);
+        $response->setPublic();
+        $response->headers->set('Content-Type', $contentType);
+
+        return $response;
     }
 }
