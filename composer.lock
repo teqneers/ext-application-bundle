@@ -531,12 +531,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/teqneers/ext-application.git",
-                "reference": "03430c34afc908609f066c97597cd8ff9c276f7a"
+                "reference": "dfb56db7956128365174a1e82bd14e41ebb23f83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/03430c34afc908609f066c97597cd8ff9c276f7a",
-                "reference": "03430c34afc908609f066c97597cd8ff9c276f7a",
+                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/dfb56db7956128365174a1e82bd14e41ebb23f83",
+                "reference": "dfb56db7956128365174a1e82bd14e41ebb23f83",
                 "shasum": ""
             },
             "require": {
@@ -564,7 +564,7 @@
             ],
             "description": "A base component to integrate Sencha Ext JS into a PHP application",
             "homepage": "https://github.com/teqneers/ext-application",
-            "time": "2015-08-31 11:22:17"
+            "time": "2015-09-02 08:08:24"
         },
         {
             "name": "twig/twig",
@@ -631,16 +631,16 @@
     "packages-dev": [
         {
             "name": "doctrine/annotations",
-            "version": "v1.2.6",
+            "version": "v1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "f4a91702ca3cd2e568c3736aa031ed00c3752af4"
+                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f4a91702ca3cd2e568c3736aa031ed00c3752af4",
-                "reference": "f4a91702ca3cd2e568c3736aa031ed00c3752af4",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
+                "reference": "f25c8aab83e0c3e976fd7d19875f198ccf2f7535",
                 "shasum": ""
             },
             "require": {
@@ -695,7 +695,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-06-17 12:21:22"
+            "time": "2015-08-31 12:32:49"
         },
         {
             "name": "doctrine/instantiator",
