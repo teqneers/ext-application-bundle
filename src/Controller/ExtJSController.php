@@ -66,7 +66,11 @@ class ExtJSController
             throw new NotFoundHttpException('Not Found', $e);
         }
 
-        $response = new StreamedResponse();
+        $response = new StreamedResponse(
+            function () {
+                echo '';
+            }
+        );
         $response->setETag($manifest->computeETag())
                  ->setLastModified(\DateTime::createFromFormat('U', $manifest->getMTime()))
                  ->setPublic();
