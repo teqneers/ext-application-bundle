@@ -12,13 +12,19 @@ services:
             - ~ # app path
         public: false
 
+    tq_extjs.manifest_loader.path_mapper:
+        class: TQ\Bundle\ExtJSApplicationBundle\Manifest\UrlPathMapper
+        public: false
+        arguments: [ @router ]
+
     tq_extjs.manifest_loader:
         class: TQ\ExtJS\Application\Manifest\ManifestLoader
         public: false
+        arguments: [ @tq_extjs.manifest_loader.path_mapper ]
 
     tq_extjs.controller:
         class: TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController
-        arguments: [ @tq_extjs.application, @router ]
+        arguments: [ @tq_extjs.application ]
 
     tq_extjs.twig.extension:
         class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtJSExtension

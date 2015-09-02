@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use TQ\ExtJS\Application\Application;
 use TQ\ExtJS\Application\Exception\FileNotFoundException;
 
@@ -32,17 +31,11 @@ class ExtJSController
     private $application;
 
     /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
-
-    /**
      * @param Application $application
      */
-    public function __construct(Application $application, UrlGeneratorInterface $urlGenerator)
+    public function __construct(Application $application)
     {
-        $this->application  = $application;
-        $this->urlGenerator = $urlGenerator;
+        $this->application = $application;
     }
 
     /**
@@ -77,19 +70,7 @@ class ExtJSController
     public function manifestAction($build, Request $request)
     {
         try {
-            $pathMapper = function ($path) use ($build) {
-                if (substr($path, 0, 1) === '/') {
-                    return $path;
-                }
-
-                return $this->urlGenerator->generate('tq_extjs_application_resources', [
-                    'build' => $build,
-                    'dev'   => $this->application->isDevelopment() ? '-dev' : '',
-                    'path'  => $path
-                ]);
-            };
-
-            $manifest = $this->application->getManifest($pathMapper, $build);
+            $manifest = $this->application->getManifest($build);
         } catch (FileNotFoundException $e) {
             throw new NotFoundHttpException('Not Found', $e);
         }

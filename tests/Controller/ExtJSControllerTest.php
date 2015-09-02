@@ -12,7 +12,6 @@ namespace TQ\Bundle\ExtJSApplicationBundle\Tests\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController;
 use TQ\ExtJS\Application\Application;
 use TQ\ExtJS\Application\Exception\FileNotFoundException;
@@ -44,16 +43,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
                     )
                     ->willReturn(new \SplFileInfo(__DIR__ . '/__files/bootstrap.js'));
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
-            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
-            array('generate', 'setContext', 'getContext')
-        );
-
-        $urlGenerator->expects($this->never())
-                     ->method('generate');
-
-        $controller = new ExtJSController($application, $urlGenerator);
+        $controller = new ExtJSController($application);
         /** @var BinaryFileResponse $response */
         $response = $controller->bootstrapAction('desktop');
 
@@ -82,16 +72,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
                     )
                     ->willThrowException(new FileNotFoundException('does-not-exist'));
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
-            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
-            array('generate', 'setContext', 'getContext')
-        );
-
-        $urlGenerator->expects($this->never())
-                     ->method('generate');
-
-        $controller = new ExtJSController($application, $urlGenerator);
+        $controller = new ExtJSController($application);
 
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
         $controller->bootstrapAction('desktop');
@@ -113,21 +94,11 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
         $application->expects($this->once())
                     ->method('getManifest')
                     ->with(
-                        $this->isInstanceOf('Closure'),
                         $this->equalTo('desktop')
                     )
                     ->willReturn(new Manifest(array()));
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
-            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
-            array('generate', 'setContext', 'getContext')
-        );
-
-        $urlGenerator->expects($this->never())
-                     ->method('generate');
-
-        $controller = new ExtJSController($application, $urlGenerator);
+        $controller = new ExtJSController($application);
         /** @var StreamedResponse $response */
         $response = $controller->manifestAction('desktop', $request);
 
@@ -152,21 +123,11 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
         $application->expects($this->once())
                     ->method('getManifest')
                     ->with(
-                        $this->isInstanceOf('Closure'),
                         $this->equalTo('desktop')
                     )
                     ->willThrowException(new FileNotFoundException('does-not-exist'));
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
-            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
-            array('generate', 'setContext', 'getContext')
-        );
-
-        $urlGenerator->expects($this->never())
-                     ->method('generate');
-
-        $controller = new ExtJSController($application, $urlGenerator);
+        $controller = new ExtJSController($application);
 
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
         $controller->manifestAction('desktop', $request);
@@ -190,16 +151,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
                     )
                     ->willReturn(new \SplFileInfo(__DIR__ . '/__files/cache.appcache'));
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
-            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
-            array('generate', 'setContext', 'getContext')
-        );
-
-        $urlGenerator->expects($this->never())
-                     ->method('generate');
-
-        $controller = new ExtJSController($application, $urlGenerator);
+        $controller = new ExtJSController($application);
         /** @var BinaryFileResponse $response */
         $response = $controller->appCacheAction('desktop');
 
@@ -228,16 +180,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
                     )
                     ->willThrowException(new FileNotFoundException('does-not-exist'));
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
-            'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
-            array('generate', 'setContext', 'getContext')
-        );
-
-        $urlGenerator->expects($this->never())
-                     ->method('generate');
-
-        $controller = new ExtJSController($application, $urlGenerator);
+        $controller = new ExtJSController($application);
 
         $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
         $controller->appCacheAction('desktop');
