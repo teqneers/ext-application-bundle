@@ -31,21 +31,20 @@ The *ext-application-bundle* requires some initial configuration so that it can 
 
     # Default configuration for extension with alias: "tq_ext_js_application"
     tq_ext_js_application:
-        workspace_path:          '%kernel.root_dir%/../workspace'
-        relative_wWorkspace_url: ../workspace
-        web_path:                '%kernel.root_dir%/../web'
-        relative_web_url:        /
-        builds:                  # Required
+        app_path:             ~ # Required
+        builds:               # Required
             # Prototype
             name:
-                development_base:        ~ # Required
-                production_base:         ~ # Required
-                development_manifest:    manifest.json
-                development_microloader: bootstrap.js
-                development_appcache:    null
-                production_manifest:     bootstrap.json
-                production_microloader:  bootstrap.js
-                production_appcache:     cache.appcache
+                development:          # Required
+                    build_path:           ~ # Required
+                    microloader:          /bootstrap.js
+                    manifest:             /bootstrap.json
+                    app_cache:            null
+                production:           # Required
+                    build_path:           ~ # Required
+                    microloader:          microloader.js
+                    manifest:             app.json
+                    app_cache:            cache.appcache
 
 Because the bundle provides its own controller to serve micro-loader, manifest and application cache manifest, you also
 need to configure your routing to include the bundle routes at a given prefix. Edit your `app/config/routing.yml`:
@@ -67,44 +66,25 @@ Given the following directory structure of a fictitious Symfony 2 application
     |   |-- app.php     Symfony 2 production front controller
     |   |-- app_dev.php Symfony 2 development front controller
     |   |-- app/        Root folder for Ext JS application production build
-    |-- workspace/      The Ext JS application workspace
-        |-- my-app/     The Ext JS application source folder
+    |-- ExampleApp/     The Ext JS application source folder
 
 
 your configuration might look like this
 
     tq_ext_js_application:
+        app_path: '%kernel.root_dir%/../ExampleApp'
         builds:
             default:
-                development_base: my-app
-                production_base:  app
-
-In case your have configured your Ext JS application to produce mor than one build (e.g. desktop and tablet or
-modern and classic toolkit), your directory structure could look like
-
-    ./
-    |-- app/
-    |-- src/
-    |-- web/
-    |   |-- app.php
-    |   |-- app_dev.php
-    |   |-- desktop/    Root folder for Ext JS application production desktop build
-    |   |-- tablet/     Root folder for Ext JS application production tablet build
-    |-- workspace/      The Ext JS application workspace
-        |-- my-app/     The Ext JS application source folder
-
-In this case you can configure the bundle accordingly
-
-    tq_ext_js_application:
-        builds:
-            desktop:
-                development_base: my-app
-                development_manifest: desktop.json
-                production_base:  desktop
-            tablet:
-                development_base: my-app
-                development_manifest: tablet.json
-                production_base:  tablet
+                development:
+                    build_path:  build/development/ExampleApp
+                    microloader: /bootstrap.js
+                    manifest:    /bootstrap.json
+                    app_cache:   ~
+                production:
+                    build_path:  build/production/ExampleApp
+                    microloader: microloader.js
+                    manifest:    app.json
+                    app_cache:   cache.appcache
 
 ## Usage
 
@@ -125,7 +105,7 @@ application templates.
         var Ext = Ext || {};
         Ext.manifest = '{{ extjsManifestPath()|e('js') }}';
     </script>
-    <script id="microloader" type="text/javascript" src="{{ extjsBootstrapPath() }}"></script>
+    <script id="microloader" data-app="{{ extjsApplicationId() }}" type="text/javascript" src="{{ extjsBootstrapPath() }}"></script>
 </head>
 <body>
 </body>
