@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40417deba91de7d640e27c9942c9bce7",
+    "hash": "a909c17306935a88f213f1475db8502b",
+    "content-hash": "35dceeea158deb38e28bb04d22f59b3b",
     "packages": [
         {
             "name": "psr/log",
@@ -526,12 +527,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/teqneers/ext-application.git",
-                "reference": "4a500c5e736279b2a1d25398cebad3385a580611"
+                "reference": "1237cb64c45d0235d20151bb0595352ec579823d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/4a500c5e736279b2a1d25398cebad3385a580611",
-                "reference": "4a500c5e736279b2a1d25398cebad3385a580611",
+                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/1237cb64c45d0235d20151bb0595352ec579823d",
+                "reference": "1237cb64c45d0235d20151bb0595352ec579823d",
                 "shasum": ""
             },
             "require": {
@@ -559,7 +560,7 @@
             ],
             "description": "A base component to integrate Sencha Ext JS into a PHP application",
             "homepage": "https://github.com/teqneers/ext-application",
-            "time": "2015-09-02 10:54:44"
+            "time": "2015-09-15 09:11:49"
         },
         {
             "name": "twig/twig",
@@ -1102,16 +1103,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.7",
+            "version": "1.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "6f1447a60f068c89d345ceee32025a51dd630f1c"
+                "reference": "3ab72c62e550370a6cd5dc873e1a04ab57562f5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/6f1447a60f068c89d345ceee32025a51dd630f1c",
-                "reference": "6f1447a60f068c89d345ceee32025a51dd630f1c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3ab72c62e550370a6cd5dc873e1a04ab57562f5b",
+                "reference": "3ab72c62e550370a6cd5dc873e1a04ab57562f5b",
                 "shasum": ""
             },
             "require": {
@@ -1147,7 +1148,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-09-14 18:56:12"
+            "time": "2015-08-16 08:51:00"
         },
         {
             "name": "phpunit/phpunit",
