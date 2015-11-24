@@ -10,7 +10,9 @@
 namespace TQ\Bundle\ExtJSApplicationBundle;
 
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use TQ\Bundle\ExtJSApplicationBundle\DependencyInjection\Compiler\ManifestMutatorPass;
 
 /**
  * Class TQExtJSApplicationBundle
@@ -19,5 +21,13 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class TQExtJSApplicationBundle extends Bundle
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
 
+        $container->addCompilerPass(new ManifestMutatorPass());
+    }
 }
