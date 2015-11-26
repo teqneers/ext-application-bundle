@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "40417deba91de7d640e27c9942c9bce7",
-    "content-hash": "a2bbde6f53d6207b35a04c47b0f26df0",
+    "hash": "1b46ba8f159ed9f5c7a120ab89946b97",
+    "content-hash": "1bee35675d436c5b6674567caaff0648",
     "packages": [
         {
             "name": "psr/log",
@@ -539,19 +539,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/teqneers/ext-application.git",
-                "reference": "7de4829c0408c9ceb3dcbf1356e0ba5752b2cb7e"
+                "reference": "f5f81c5f8d9b7c8ee84d902f242c6c51c218df07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/7de4829c0408c9ceb3dcbf1356e0ba5752b2cb7e",
-                "reference": "7de4829c0408c9ceb3dcbf1356e0ba5752b2cb7e",
+                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/f5f81c5f8d9b7c8ee84d902f242c6c51c218df07",
+                "reference": "f5f81c5f8d9b7c8ee84d902f242c6c51c218df07",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.7"
+                "phpunit/phpunit": "~4.8"
             },
             "type": "library",
             "autoload": {
@@ -572,7 +572,7 @@
             ],
             "description": "A base component to integrate Sencha Ext JS into a PHP application",
             "homepage": "https://github.com/teqneers/ext-application",
-            "time": "2015-11-24 10:08:35"
+            "time": "2015-11-26 15:59:58"
         },
         {
             "name": "twig/twig",
