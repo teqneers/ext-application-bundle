@@ -181,7 +181,6 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         $container->setParameter('kernel.cache_dir', $rootPath . '/cache');
         $container->setParameter('kernel.bundles', array());
         $container->set('router', $urlGenerator);
-        $container->set('service_container', $container);
         $container->registerExtension($extension);
         $extension->load($configs, $container);
         $bundle->build($container);

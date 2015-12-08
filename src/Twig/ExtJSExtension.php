@@ -9,8 +9,7 @@
 
 namespace TQ\Bundle\ExtJSApplicationBundle\Twig;
 
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use TQ\ExtJS\Application\Application;
+use TQ\Bundle\ExtJSApplicationBundle\Helper\TemplatingHelper;
 
 /**
  * Class ExtJSExtension
@@ -20,23 +19,16 @@ use TQ\ExtJS\Application\Application;
 class ExtJSExtension extends \Twig_Extension
 {
     /**
-     * @var UrlGeneratorInterface
+     * @var TemplatingHelper
      */
-    private $generator;
+    private $templatingHelper;
 
     /**
-     * @var Application
+     * @param TemplatingHelper $templatingHelper
      */
-    private $application;
-
-    /**
-     * @param UrlGeneratorInterface $generator
-     * @param Application           $application
-     */
-    public function __construct(UrlGeneratorInterface $generator, Application $application)
+    public function __construct(TemplatingHelper $templatingHelper)
     {
-        $this->generator   = $generator;
-        $this->application = $application;
+        $this->templatingHelper = $templatingHelper;
     }
 
     /**
@@ -47,19 +39,19 @@ class ExtJSExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFunction(
                 'extjsManifestPath',
-                [$this, 'getManifestPath']
+                [$this->templatingHelper, 'getManifestPath']
             ),
             new \Twig_SimpleFunction(
                 'extjsBootstrapPath',
-                [$this, 'getBootstrapPath']
+                [$this->templatingHelper, 'getBootstrapPath']
             ),
             new \Twig_SimpleFunction(
                 'extjsAppCachePath',
-                [$this, 'getAppCachePath']
+                [$this->templatingHelper, 'getAppCachePath']
             ),
             new \Twig_SimpleFunction(
                 'extjsApplicationId',
-                [$this, 'getApplicationId']
+                [$this->templatingHelper, 'getApplicationId']
             ),
         ];
     }
@@ -70,53 +62,5 @@ class ExtJSExtension extends \Twig_Extension
     public function getName()
     {
         return 'tq_extjs_extension';
-    }
-
-    /**
-     * @param string|null $build
-     * @return string
-     */
-    public function getManifestPath($build = null)
-    {
-        return $this->generator->generate('tq_extjs_application_manifest', [
-            'build' => $build ?: $this->application->getDefaultBuild(),
-            'dev'   => $this->application->isDevelopment() ? '-dev' : ''
-        ]);
-    }
-
-    /**
-     * @param string|null $build
-     * @return string
-     */
-    public function getBootstrapPath($build = null)
-    {
-        return $this->generator->generate('tq_extjs_application_bootstrap', [
-            'build' => $build ?: $this->application->getDefaultBuild(),
-            'dev'   => $this->application->isDevelopment() ? '-dev' : ''
-        ]);
-    }
-
-    /**
-     * @param string|null $build
-     * @return string
-     */
-    public function getAppCachePath($build = null)
-    {
-        $build = $build ?: $this->application->getDefaultBuild();
-        if (!$this->application->hasAppCache($build)) {
-            return '';
-        }
-        return $this->generator->generate('tq_extjs_application_appcache', [
-            'build' => $build,
-            'dev'   => $this->application->isDevelopment() ? '-dev' : ''
-        ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function getApplicationId()
-    {
-        return $this->application->getApplicationId();
     }
 }

@@ -26,8 +26,18 @@ services:
         class: TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController
         arguments: [ @tq_extjs.application ]
 
-    tq_extjs.twig.extension:
-        class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtJSExtension
+    tq_extjs.templating_helper:
+        class: TQ\Bundle\ExtJSApplicationBundle\Helper\TemplatingHelper
         arguments: [ @router, @tq_extjs.application ]
+
+    tq_extjs.twig.extension.extjs_extension:
+        class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtJSExtension
+        arguments: [ @tq_extjs.templating_helper ]
         tags:
             - { name: twig.extension }
+
+    tq_extjs.templating.helper.extjs_helper:
+        class: TQ\Bundle\ExtJSApplicationBundle\Templating\Helper\ExtJSHelper
+        arguments: [ @tq_extjs.templating_helper ]
+        tags:
+            - { name: templating.helper, alias: tq_extjs }

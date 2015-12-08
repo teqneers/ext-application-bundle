@@ -6,18 +6,18 @@
  * Time: 15:32
  */
 
-namespace TQ\Bundle\ExtJSApplicationBundle\Tests\Twig;
+namespace TQ\Bundle\ExtJSApplicationBundle\Tests\Helper;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use TQ\Bundle\ExtJSApplicationBundle\Twig\ExtJSExtension;
+use TQ\Bundle\ExtJSApplicationBundle\Helper\TemplatingHelper;
 use TQ\ExtJS\Application\Application;
 
 /**
- * Class ExtJSExtensionTest
+ * Class TemplatingHelperTest
  *
- * @package TQ\Bundle\ExtJSApplicationBundle\Tests\Twig
+ * @package TQ\Bundle\ExtJSApplicationBundle\Helper\Twig
  */
-class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
+class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testGetManifestPath()
@@ -56,7 +56,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
                      )
                      ->willReturn('url');
 
-        $extension = new ExtJSExtension($urlGenerator, $application);
+        $extension = new TemplatingHelper($urlGenerator, $application);
         $this->assertEquals('url', $extension->getManifestPath());
     }
 
@@ -97,7 +97,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
                      )
                      ->willReturn('url');
 
-        $extension = new ExtJSExtension($urlGenerator, $application);
+        $extension = new TemplatingHelper($urlGenerator, $application);
         $this->assertEquals('url', $extension->getBootstrapPath());
     }
 
@@ -143,7 +143,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
                      )
                      ->willReturn('url');
 
-        $extension = new ExtJSExtension($urlGenerator, $application);
+        $extension = new TemplatingHelper($urlGenerator, $application);
         $this->assertEquals('url', $extension->getAppCachePath());
     }
 
@@ -179,7 +179,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
         $urlGenerator->expects($this->never())
                      ->method('generate');
 
-        $extension = new ExtJSExtension($urlGenerator, $application);
+        $extension = new TemplatingHelper($urlGenerator, $application);
         $this->assertEquals('', $extension->getAppCachePath());
     }
 
@@ -204,7 +204,7 @@ class ExtJSExtensionTest extends \PHPUnit_Framework_TestCase
             array('generate', 'setContext', 'getContext')
         );
 
-        $extension = new ExtJSExtension($urlGenerator, $application);
+        $extension = new TemplatingHelper($urlGenerator, $application);
         $this->assertEquals('this-is-the-application-id', $extension->getApplicationId());
     }
 }
