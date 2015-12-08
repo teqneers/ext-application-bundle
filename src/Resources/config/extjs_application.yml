@@ -2,8 +2,8 @@ services:
     tq_extjs.application:
         class: TQ\ExtJS\Application\Application
         arguments:
-            - @tq_extjs.application_configuration
-            - @tq_extjs.manifest_loader
+            - "@tq_extjs.application_configuration"
+            - "@tq_extjs.manifest_loader"
             - "%kernel.environment%"
 
     tq_extjs.application_configuration:
@@ -15,29 +15,29 @@ services:
     tq_extjs.manifest_loader.path_mapper:
         class: TQ\Bundle\ExtJSApplicationBundle\Manifest\UrlPathMapper
         public: false
-        arguments: [ @router ]
+        arguments: [ "@router" ]
 
     tq_extjs.manifest_loader:
         class: TQ\ExtJS\Application\Manifest\ManifestLoader
         public: false
-        arguments: [ @tq_extjs.manifest_loader.path_mapper ]
+        arguments: [ "@tq_extjs.manifest_loader.path_mapper" ]
 
     tq_extjs.controller:
         class: TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController
-        arguments: [ @tq_extjs.application ]
+        arguments: [ "@tq_extjs.application" ]
 
     tq_extjs.templating_helper:
         class: TQ\Bundle\ExtJSApplicationBundle\Helper\TemplatingHelper
-        arguments: [ @router, @tq_extjs.application ]
+        arguments: [ "@router", "@tq_extjs.application" ]
 
     tq_extjs.twig.extension.extjs_extension:
         class: TQ\Bundle\ExtJSApplicationBundle\Twig\ExtJSExtension
-        arguments: [ @tq_extjs.templating_helper ]
+        arguments: [ "@tq_extjs.templating_helper" ]
         tags:
             - { name: twig.extension }
 
     tq_extjs.templating.helper.extjs_helper:
         class: TQ\Bundle\ExtJSApplicationBundle\Templating\Helper\ExtJSHelper
-        arguments: [ @tq_extjs.templating_helper ]
+        arguments: [ "@tq_extjs.templating_helper" ]
         tags:
             - { name: templating.helper, alias: tq_extjs }
