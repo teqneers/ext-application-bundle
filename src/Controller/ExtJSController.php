@@ -11,6 +11,7 @@ namespace TQ\Bundle\ExtJSApplicationBundle\Controller;
 
 
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -119,46 +120,9 @@ class ExtJSController
             throw new NotFoundHttpException('Not Found', $e);
         }
 
-        $file = new \Symfony\Component\HttpFoundation\File\File($buildArtifact->getPathname());
+        $file = new File($buildArtifact->getPathname());
 
-        switch ($file->getExtension()) {
-            case 'css':
-                $contentType = 'text/css';
-                break;
-            case 'js':
-                $contentType = 'text/javascript';
-                break;
-            case 'svg':
-                $contentType = 'image/svg+xml';
-                break;
-            case 'ttf':
-                $contentType = 'application/x-font-ttf';
-                break;
-            case 'otf':
-                $contentType = 'application/x-font-opentype';
-                break;
-            case 'eot':
-                $contentType = 'application/vnd.ms-fontobject';
-                break;
-            case 'woff':
-                $contentType = 'application/font-woff';
-                break;
-            case 'woff2':
-                $contentType = 'application/font-woff2';
-                break;
-            case 'sfnt':
-                $contentType = 'application/font-sfnt';
-                break;
-            default:
-                if ($mimeType = $file->getMimeType()) {
-                    $contentType = $mimeType;
-                } else {
-                    $contentType = 'text/plain';
-                }
-                break;
-        }
-
-        return $this->createBinaryFileResponse($request, $file, $contentType);
+        return $this->createBinaryFileResponse($request, $file, $this->determineContentType($file));
     }
 
     /**
@@ -178,5 +142,39 @@ class ExtJSController
         }
 
         return $response;
+    }
+
+    /**
+     * @param File $file
+     * @return string
+     */
+    private function determineContentType(File $file)
+    {
+        switch ($file->getExtension()) {
+            case 'css':
+                return 'text/css';
+            case 'js':
+                return 'text/javascript';
+            case 'svg':
+                return 'image/svg+xml';
+            case 'ttf':
+                return 'application/x-font-ttf';
+            case 'otf':
+                return 'application/x-font-opentype';
+            case 'eot':
+                return 'application/vnd.ms-fontobject';
+            case 'woff':
+                return 'application/font-woff';
+            case 'woff2':
+                return 'application/font-woff2';
+            case 'sfnt':
+                return 'application/font-sfnt';
+            default:
+                if ($mimeType = $file->getMimeType()) {
+                    return $mimeType;
+                } else {
+                    return 'text/plain';
+                }
+        }
     }
 }
