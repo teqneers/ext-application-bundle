@@ -34,5 +34,11 @@
         "phpunit/phpunit": "~4.8,!=4.8.20|~5.1",
         "symfony/framework-bundle": "~2.6|~3.0.0",
         "symfony/templating": "~2.6|~3.0.0"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/teqneers/ext-application.git"
+        }
+    ]
 }
