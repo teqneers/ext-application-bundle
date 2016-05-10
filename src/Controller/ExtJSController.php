@@ -46,6 +46,8 @@ class ExtJSController
      */
     public function bootstrapAction($build, Request $request)
     {
+        $this->closeSession($request);
+
         try {
             $bootstrapFile = $this->application->getMicroLoaderFile($build);
         } catch (FileNotFoundException $e) {
@@ -62,6 +64,8 @@ class ExtJSController
      */
     public function manifestAction($build, Request $request)
     {
+        $this->closeSession($request);
+
         try {
             $manifest = $this->application->getManifest($build);
         } catch (FileNotFoundException $e) {
@@ -97,6 +101,8 @@ class ExtJSController
      */
     public function appCacheAction($build, Request $request)
     {
+        $this->closeSession($request);
+
         try {
             $appCacheFile = $this->application->getAppCacheFile($build);
         } catch (FileNotFoundException $e) {
@@ -114,6 +120,8 @@ class ExtJSController
      */
     public function resourcesAction($build, $path, Request $request)
     {
+        $this->closeSession($request);
+
         try {
             $buildArtifact = $this->application->getBuildArtifact(str_replace('~', '..', $path), $build);
         } catch (FileNotFoundException $e) {
@@ -123,6 +131,17 @@ class ExtJSController
         $file = new File($buildArtifact->getPathname());
 
         return $this->createBinaryFileResponse($request, $file, $this->determineContentType($file));
+    }
+
+    /**
+     * @param Request $request
+     */
+    private function closeSession(Request $request)
+    {
+        $session = $request->getSession();
+        if ($session && $session->isStarted()) {
+            $session->save();
+        }
     }
 
     /**
