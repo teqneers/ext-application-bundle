@@ -1,3 +1,6 @@
+parameters:
+    tq_extjs.app_path: ~
+
 services:
     tq_extjs.application:
         class: TQ\ExtJS\Application\Application
@@ -9,7 +12,7 @@ services:
     tq_extjs.application_configuration:
         class: TQ\ExtJS\Application\Configuration\ApplicationConfiguration
         arguments:
-            - ~ # app path
+            - "%tq_extjs.app_path%"
         public: false
 
     tq_extjs.manifest_loader.path_mapper:
