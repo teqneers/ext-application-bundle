@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e31eb330bc11adc2268a53368a3a7120",
-    "content-hash": "9c44209a395a790f86cd261d7a6f7421",
+    "hash": "ff13c4e52e46fb7f8c360c285d9882c1",
+    "content-hash": "4d79da8a8174419e2d4048a0e451dd3d",
     "packages": [
         {
             "name": "psr/log",
@@ -595,16 +595,16 @@
         },
         {
             "name": "teqneers/ext-application",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/teqneers/ext-application.git",
-                "reference": "1839400112e5df3067130def05958a51da74981a"
+                "reference": "b5e2b3bda9da1bba237246ef62d901de54d0e4e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/1839400112e5df3067130def05958a51da74981a",
-                "reference": "1839400112e5df3067130def05958a51da74981a",
+                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/b5e2b3bda9da1bba237246ef62d901de54d0e4e0",
+                "reference": "b5e2b3bda9da1bba237246ef62d901de54d0e4e0",
                 "shasum": ""
             },
             "require": {
@@ -642,10 +642,10 @@
             "description": "A base component to integrate Sencha Ext JS into a PHP application",
             "homepage": "https://github.com/teqneers/ext-application",
             "support": {
-                "source": "https://github.com/teqneers/ext-application/tree/1.0.0",
+                "source": "https://github.com/teqneers/ext-application/tree/master",
                 "issues": "https://github.com/teqneers/ext-application/issues"
             },
-            "time": "2016-06-07 07:51:02"
+            "time": "2016-06-07 07:48:40"
         },
         {
             "name": "twig/twig",
@@ -2884,7 +2884,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "teqneers/ext-application": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
