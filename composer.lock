@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e342cfaf932026145b906087cc08591b",
-    "content-hash": "82feee14e3b4035f1af8b6aadd00d89b",
+    "hash": "ff13c4e52e46fb7f8c360c285d9882c1",
+    "content-hash": "4d79da8a8174419e2d4048a0e451dd3d",
     "packages": [
         {
             "name": "psr/log",
@@ -599,12 +599,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/teqneers/ext-application.git",
-                "reference": "4f1b4f5d9285f26fb4c78fde0cc000e31aa689df"
+                "reference": "b5e2b3bda9da1bba237246ef62d901de54d0e4e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/4f1b4f5d9285f26fb4c78fde0cc000e31aa689df",
-                "reference": "4f1b4f5d9285f26fb4c78fde0cc000e31aa689df",
+                "url": "https://api.github.com/repos/teqneers/ext-application/zipball/b5e2b3bda9da1bba237246ef62d901de54d0e4e0",
+                "reference": "b5e2b3bda9da1bba237246ef62d901de54d0e4e0",
                 "shasum": ""
             },
             "require": {
@@ -614,6 +614,11 @@
                 "phpunit/phpunit": "~4.8,!=4.8.20|~5.1"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "TQ\\ExtJS\\Application\\": "src/"
@@ -640,7 +645,7 @@
                 "source": "https://github.com/teqneers/ext-application/tree/master",
                 "issues": "https://github.com/teqneers/ext-application/issues"
             },
-            "time": "2016-05-10 15:23:37"
+            "time": "2016-06-07 07:48:40"
         },
         {
             "name": "twig/twig",
@@ -2014,16 +2019,16 @@
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v3.0.6",
+            "version": "v3.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
-                "reference": "b75263311e7f07394ce989e39169888bb2387150"
+                "reference": "1689b0c7922a9571964c35d8bcd8c2cbb6c0256f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/b75263311e7f07394ce989e39169888bb2387150",
-                "reference": "b75263311e7f07394ce989e39169888bb2387150",
+                "url": "https://api.github.com/repos/symfony/framework-bundle/zipball/1689b0c7922a9571964c35d8bcd8c2cbb6c0256f",
+                "reference": "1689b0c7922a9571964c35d8bcd8c2cbb6c0256f",
                 "shasum": ""
             },
             "require": {
@@ -2102,7 +2107,7 @@
             ],
             "description": "Symfony FrameworkBundle",
             "homepage": "https://symfony.com",
-            "time": "2016-05-09 18:14:44"
+            "time": "2016-06-06 15:08:35"
         },
         {
             "name": "symfony/polyfill-php56",
