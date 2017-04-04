@@ -14,9 +14,13 @@ php:
     - hhvm
 
 env:
-  matrix:
     - COMPOSER_PARAM="update --prefer-source --prefer-lowest"
     - COMPOSER_PARAM="update --prefer-source"
+
+matrix:
+    exclude:
+        - php: nightly
+          env: COMPOSER_PARAM="update --prefer-source --prefer-lowest"
 
 before_script:
     - composer selfupdate
