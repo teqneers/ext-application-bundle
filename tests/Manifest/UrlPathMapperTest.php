@@ -21,7 +21,7 @@ class UrlPathMapperTest extends \PHPUnit_Framework_TestCase
     public function testAbsolutePathInProduction()
     {
         /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
+        $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
         );
@@ -37,7 +37,7 @@ class UrlPathMapperTest extends \PHPUnit_Framework_TestCase
     public function testAbsolutePathInDevelopment()
     {
         /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
+        $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
         );
@@ -53,7 +53,7 @@ class UrlPathMapperTest extends \PHPUnit_Framework_TestCase
     public function testRelativePathInProduction()
     {
         /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
+        $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
         );
@@ -78,7 +78,7 @@ class UrlPathMapperTest extends \PHPUnit_Framework_TestCase
     public function testRelativePathInDevelopment()
     {
         /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
-        $urlGenerator = $this->getMock(
+        $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
         );
