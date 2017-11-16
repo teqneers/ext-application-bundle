@@ -167,7 +167,7 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         $rootPath = sys_get_temp_dir() . '/ext-application-bundle';
 
         /** @var UrlGeneratorInterface */
-        $urlGenerator = $this->getMock(
+        $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
         );

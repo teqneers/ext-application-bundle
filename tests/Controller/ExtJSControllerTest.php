@@ -28,12 +28,9 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
     public function testBootstrapAction()
     {
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
-        $application = $this->getMock(
+        $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
-            array('getMicroLoaderFile'),
-            array(),
-            '',
-            false
+            array('getMicroLoaderFile')
         );
 
         $application->expects($this->once())
@@ -57,12 +54,9 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
     public function testBootstrapActionFailsIfFileNotFound()
     {
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
-        $application = $this->getMock(
+        $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
-            array('getMicroLoaderFile'),
-            array(),
-            '',
-            false
+            array('getMicroLoaderFile')
         );
 
         $application->expects($this->once())
@@ -81,12 +75,9 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
     public function testManifestAction()
     {
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
-        $application = $this->getMock(
+        $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
-            array('getManifest'),
-            array(),
-            '',
-            false
+            array('getManifest')
         );
 
         $request = new Request();
@@ -110,12 +101,9 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
     public function testManifestActionFailsIfFileNotFound()
     {
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
-        $application = $this->getMock(
+        $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
-            array('getManifest'),
-            array(),
-            '',
-            false
+            array('getManifest')
         );
 
         $request = new Request();
@@ -136,12 +124,9 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
     public function testAppCacheAction()
     {
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
-        $application = $this->getMock(
+        $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
-            array('getAppCacheFile'),
-            array(),
-            '',
-            false
+            array('getAppCacheFile')
         );
 
         $application->expects($this->once())
@@ -165,12 +150,9 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
     public function testAppCacheActionFailsIfFileNotFound()
     {
         /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
-        $application = $this->getMock(
+        $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
-            array('getAppCacheFile'),
-            array(),
-            '',
-            false
+            array('getAppCacheFile')
         );
 
         $application->expects($this->once())
