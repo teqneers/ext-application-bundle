@@ -35,12 +35,6 @@
         "symfony/framework-bundle": "~2.8|~3.0",
         "symfony/templating": "~2.8|~3.0"
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/teqneers/ext-application.git"
-        }
-    ],
     "extra": {
         "branch-alias": {
             "dev-master": "2.0.x-dev"
