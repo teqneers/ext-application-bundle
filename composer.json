@@ -1,7 +1,7 @@
 {
     "name": "teqneers/ext-application-bundle",
     "type": "library",
-    "description": "A Symfony 2 bundle to integrate Sencha Ext JS into a Symfony 2 application",
+    "description": "A Symfony bundle to integrate Sencha Ext JS into a Symfony application",
     "homepage": "https://github.com/teqneers/ext-application-bundle",
     "license": "MIT",
     "authors": [
