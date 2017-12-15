@@ -27,6 +27,7 @@ services:
 
     tq_extjs.controller:
         class: TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController
+        public: true
         arguments: [ "@tq_extjs.application" ]
 
     tq_extjs.templating_helper:
