@@ -8,6 +8,7 @@
 
 namespace TQ\Bundle\ExtJSApplicationBundle\Tests\DependencyInjection;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use TQ\Bundle\ExtJSApplicationBundle\TQExtJSApplicationBundle;
@@ -18,12 +19,12 @@ use TQ\ExtJS\Application\Application;
  *
  * @package TQ\Bundle\ExtJSApplicationBundle\Tests\DependencyInjection
  */
-class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
+class TQExtJSApplicationExtensionTest extends TestCase
 {
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clearTempDir();
     }
@@ -31,7 +32,7 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->clearTempDir();
     }
@@ -41,12 +42,12 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainerForConfig(array(
             array(
                 'app_path' => '%kernel.root_dir%/../ExampleApp',
-                'builds'   => array(
+                'builds' => array(
                     'desktop' => array(
                         'development' => array(
                             'build_path' => 'build/development/ExampleApp'
                         ),
-                        'production'  => array(
+                        'production' => array(
                             'build_path' => 'build/production/ExampleApp'
                         )
                     )
@@ -71,12 +72,12 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainerForConfig(array(
             array(
                 'app_path' => '%kernel.root_dir%/../ExampleApp',
-                'builds'   => array(
+                'builds' => array(
                     'desktop' => array(
                         'development' => array(
                             'build_path' => 'build/development/ExampleApp'
                         ),
-                        'production'  => array(
+                        'production' => array(
                             'build_path' => 'build/production/ExampleApp'
                         )
                     )
@@ -101,12 +102,12 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainerForConfig(array(
             array(
                 'app_path' => '%kernel.root_dir%/../ExampleApp',
-                'builds'   => array(
+                'builds' => array(
                     'desktop' => array(
                         'development' => array(
                             'build_path' => 'build/development/ExampleApp'
                         ),
-                        'production'  => array(
+                        'production' => array(
                             'build_path' => 'build/production/ExampleApp'
                         )
                     )
@@ -131,12 +132,12 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
         $container = $this->getContainerForConfig(array(
             array(
                 'app_path' => '%kernel.root_dir%/../ExampleApp',
-                'builds'   => array(
+                'builds' => array(
                     'desktop' => array(
                         'development' => array(
                             'build_path' => 'build/development/ExampleApp'
                         ),
-                        'production'  => array(
+                        'production' => array(
                             'build_path' => 'build/production/ExampleApp'
                         )
                     )
@@ -157,9 +158,9 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @param array  $configs
+     * @param array $configs
      * @param string $environment
-     * @param bool   $debug
+     * @param bool $debug
      * @return ContainerBuilder
      */
     protected function getContainerForConfig(array $configs, $environment, $debug)
@@ -172,7 +173,7 @@ class TQExtJSApplicationExtensionTest extends \PHPUnit_Framework_TestCase
             array('generate', 'setContext', 'getContext')
         );
 
-        $bundle    = new TQExtJSApplicationBundle();
+        $bundle = new TQExtJSApplicationBundle();
         $extension = $bundle->getContainerExtension();
         $container = new ContainerBuilder();
         $container->setParameter('kernel.debug', $debug);

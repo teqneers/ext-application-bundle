@@ -138,6 +138,9 @@ class ExtJSController
      */
     private function closeSession(Request $request)
     {
+        if(!$request->hasSession()) {
+            return;
+        }
         $session = $request->getSession();
         if ($session && $session->isStarted()) {
             $session->save();

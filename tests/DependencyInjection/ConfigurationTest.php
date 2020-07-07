@@ -8,6 +8,7 @@
 
 namespace TQ\Bundle\ExtJSApplicationBundle\Tests\DependencyInjection;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 use TQ\Bundle\ExtJSApplicationBundle\DependencyInjection\Configuration;
 
@@ -16,7 +17,7 @@ use TQ\Bundle\ExtJSApplicationBundle\DependencyInjection\Configuration;
  *
  * @package TQ\Bundle\ExtJSApplicationBundle\Tests\DependencyInjection
  */
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+class ConfigurationTest extends TestCase
 {
     /**
      * @return Configuration
@@ -75,7 +76,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $configuration = $this->getConfiguration();
         $processor     = new Processor();
 
-        $this->setExpectedException(
+        $this->expectException(
             'Symfony\Component\Config\Definition\Exception\InvalidConfigurationException',
             'The child node "app_path" at path "tq_ext_js_application" must be configured.'
         );
@@ -88,7 +89,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
         $configuration = $this->getConfiguration();
         $processor     = new Processor();
 
-        $this->setExpectedException(
+        $this->expectException(
             'Symfony\Component\Config\Definition\Exception\InvalidConfigurationException',
             'The child node "builds" at path "tq_ext_js_application" must be configured.'
         );

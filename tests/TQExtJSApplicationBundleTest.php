@@ -8,6 +8,7 @@
 
 namespace TQ\Bundle\ExtJSApplicationBundle\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -22,12 +23,12 @@ use TQ\Bundle\ExtJSApplicationBundle\TQExtJSApplicationBundle;
  *
  * @package TQ\Bundle\ExtJSApplicationBundle\Tests
  */
-class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
+class TQExtJSApplicationBundleTest extends TestCase
 {
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->clearTempDir();
     }
@@ -35,7 +36,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         $this->clearTempDir();
     }
@@ -47,8 +48,8 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         /** @var ExtJSController $controller */
         $controller = $kernel->getContainer()
-                             ->get('tq_extjs.controller');
-        $request    = new Request();
+            ->get('tq_extjs.controller');
+        $request = new Request();
         /** @var BinaryFileResponse $response */
         $response = $controller->bootstrapAction('desktop', new Request());
 
@@ -57,7 +58,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             __DIR__ . '/__files/ExampleApp/build/production/ExampleApp/microloader.js',
             $response->getFile()
-                     ->getPathname()
+                ->getPathname()
         );
         $this->assertEquals('application/javascript', $response->headers->get('Content-Type'));
 
@@ -73,8 +74,8 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         /** @var ExtJSController $controller */
         $controller = $kernel->getContainer()
-                             ->get('tq_extjs.controller');
-        $request    = new Request();
+            ->get('tq_extjs.controller');
+        $request = new Request();
         /** @var StreamedResponse $response */
         $response = $controller->manifestAction('desktop', $request);
 
@@ -101,8 +102,8 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         /** @var ExtJSController $controller */
         $controller = $kernel->getContainer()
-                             ->get('tq_extjs.controller');
-        $request    = new Request();
+            ->get('tq_extjs.controller');
+        $request = new Request();
         /** @var BinaryFileResponse $response */
         $response = $controller->bootstrapAction('desktop', new Request());
 
@@ -111,7 +112,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             __DIR__ . '/__files/ExampleApp/bootstrap.js',
             $response->getFile()
-                     ->getPathname()
+                ->getPathname()
         );
         $this->assertEquals('application/javascript', $response->headers->get('Content-Type'));
 
@@ -127,8 +128,8 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         /** @var ExtJSController $controller */
         $controller = $kernel->getContainer()
-                             ->get('tq_extjs.controller');
-        $request    = new Request();
+            ->get('tq_extjs.controller');
+        $request = new Request();
         /** @var StreamedResponse $response */
         $response = $controller->manifestAction('desktop', $request);
 
@@ -155,8 +156,8 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         /** @var ExtJSController $controller */
         $controller = $kernel->getContainer()
-                             ->get('tq_extjs.controller');
-        $request    = new Request();
+            ->get('tq_extjs.controller');
+        $request = new Request();
         /** @var BinaryFileResponse $response */
         $response = $controller->appCacheAction('desktop', new Request());
 
@@ -165,7 +166,7 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             __DIR__ . '/__files/ExampleApp/build/production/ExampleApp/cache.appcache',
             $response->getFile()
-                     ->getPathname()
+                ->getPathname()
         );
         $this->assertEquals('text/cache-manifest', $response->headers->get('Content-Type'));
 
@@ -181,9 +182,9 @@ class TQExtJSApplicationBundleTest extends \PHPUnit_Framework_TestCase
 
         /** @var ExtJSController $controller */
         $controller = $kernel->getContainer()
-                             ->get('tq_extjs.controller');
+            ->get('tq_extjs.controller');
         /** @var BinaryFileResponse $response */
-        $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+        $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
         $controller->appCacheAction('desktop', new Request());
     }
 

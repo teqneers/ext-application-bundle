@@ -8,6 +8,8 @@
 
 namespace TQ\Bundle\ExtJSApplicationBundle\Tests\Helper;
 
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use TQ\Bundle\ExtJSApplicationBundle\Helper\TemplatingHelper;
 use TQ\ExtJS\Application\Application;
@@ -17,12 +19,12 @@ use TQ\ExtJS\Application\Application;
  *
  * @package TQ\Bundle\ExtJSApplicationBundle\Helper\Twig
  */
-class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
+class TemplatingHelperTest extends TestCase
 {
 
     public function testGetManifestPath()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getDefaultBuild', 'isDevelopment')
@@ -36,7 +38,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
                     ->method('isDevelopment')
                     ->willReturn(false);
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
@@ -60,7 +62,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testBootstrapPath()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getDefaultBuild', 'isDevelopment')
@@ -74,7 +76,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
                     ->method('isDevelopment')
                     ->willReturn(false);
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
@@ -97,7 +99,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAppCachePath()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getDefaultBuild', 'isDevelopment', 'hasAppCache')
@@ -117,7 +119,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
                     ->with($this->equalTo('desktop'))
                     ->willReturn(true);
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
@@ -140,7 +142,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAppCachePathWhenNull()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getDefaultBuild', 'isDevelopment', 'hasAppCache')
@@ -158,7 +160,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
                     ->with($this->equalTo('desktop'))
                     ->willReturn(false);
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
@@ -173,7 +175,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
 
     public function testGetApplicationId()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getApplicationId')
@@ -183,7 +185,7 @@ class TemplatingHelperTest extends \PHPUnit_Framework_TestCase
                     ->method('getApplicationId')
                     ->willReturn('this-is-the-application-id');
 
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')

@@ -8,6 +8,8 @@
 
 namespace TQ\Bundle\ExtJSApplicationBundle\Tests\Manifest;
 
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use TQ\Bundle\ExtJSApplicationBundle\Manifest\UrlPathMapper;
 
@@ -16,11 +18,11 @@ use TQ\Bundle\ExtJSApplicationBundle\Manifest\UrlPathMapper;
  *
  * @package TQ\Bundle\ExtJSApplicationBundle\Tests\Manifest
  */
-class UrlPathMapperTest extends \PHPUnit_Framework_TestCase
+class UrlPathMapperTest extends TestCase
 {
     public function testAbsolutePathInProduction()
     {
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
@@ -36,7 +38,7 @@ class UrlPathMapperTest extends \PHPUnit_Framework_TestCase
 
     public function testAbsolutePathInDevelopment()
     {
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
@@ -52,7 +54,7 @@ class UrlPathMapperTest extends \PHPUnit_Framework_TestCase
 
     public function testRelativePathInProduction()
     {
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')
@@ -77,7 +79,7 @@ class UrlPathMapperTest extends \PHPUnit_Framework_TestCase
 
     public function testRelativePathInDevelopment()
     {
-        /** @var UrlGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject $urlGenerator */
+        /** @var UrlGeneratorInterface|MockObject $urlGenerator */
         $urlGenerator = $this->createPartialMock(
             'Symfony\Component\Routing\Generator\UrlGeneratorInterface',
             array('generate', 'setContext', 'getContext')

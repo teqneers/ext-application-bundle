@@ -9,6 +9,8 @@
 namespace TQ\Bundle\ExtJSApplicationBundle\Tests\Controller;
 
 
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -22,12 +24,12 @@ use TQ\ExtJS\Application\Manifest\Manifest;
  *
  * @package TQ\Bundle\ExtJSApplicationBundle\Tests\Controller
  */
-class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
+class ExtJSControllerTest extends TestCase
 {
 
     public function testBootstrapAction()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|\PHPUnit\Framework\MockObject\MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getMicroLoaderFile')
@@ -53,7 +55,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testBootstrapActionFailsIfFileNotFound()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|\PHPUnit\Framework\MockObject\MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getMicroLoaderFile')
@@ -68,13 +70,13 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $controller = new ExtJSController($application);
 
-        $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+        $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
         $controller->bootstrapAction('desktop', new Request());
     }
 
     public function testManifestAction()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getManifest')
@@ -100,7 +102,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testManifestActionFailsIfFileNotFound()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getManifest')
@@ -117,13 +119,13 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $controller = new ExtJSController($application);
 
-        $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+        $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
         $controller->manifestAction('desktop', $request);
     }
 
     public function testAppCacheAction()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getAppCacheFile')
@@ -149,7 +151,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testAppCacheActionFailsIfFileNotFound()
     {
-        /** @var Application|\PHPUnit_Framework_MockObject_MockObject $application */
+        /** @var Application|MockObject $application */
         $application = $this->createPartialMock(
             'TQ\ExtJS\Application\Application',
             array('getAppCacheFile')
@@ -164,7 +166,7 @@ class ExtJSControllerTest extends \PHPUnit_Framework_TestCase
 
         $controller = new ExtJSController($application);
 
-        $this->setExpectedException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
+        $this->expectException('Symfony\Component\HttpKernel\Exception\NotFoundHttpException');
         $controller->appCacheAction('desktop', new Request());
     }
 }

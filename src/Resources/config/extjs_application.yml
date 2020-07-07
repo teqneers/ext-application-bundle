@@ -4,6 +4,7 @@ parameters:
 services:
     tq_extjs.application:
         class: TQ\ExtJS\Application\Application
+        public: true
         arguments:
             - "@tq_extjs.application_configuration"
             - "@tq_extjs.manifest_loader"
