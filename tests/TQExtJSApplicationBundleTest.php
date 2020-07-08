@@ -30,6 +30,9 @@ class TQExtJSApplicationBundleTest extends TestCase
      */
     protected function setUp(): void
     {
+        if (Kernel::VERSION_ID < 40000) {
+            $this->markTestSkipped('Test only supported on Symfony >= 4');
+        }
         $this->clearTempDir();
     }
 
