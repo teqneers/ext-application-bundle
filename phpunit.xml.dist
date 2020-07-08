@@ -11,10 +11,20 @@
          bootstrap="tests/bootstrap.php"
 >
     <testsuites>
-        <testsuite name="TEQneers Ext JS Application Bundle for Symfony 2">
+        <testsuite name="TEQneers Ext JS Application Bundle for Symfony">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
+
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="SHELL_VERBOSITY" value="-1"/>
+    </php>
+
+	<listeners>
+        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener"/>
+    </listeners>
 
     <filter>
         <whitelist>
