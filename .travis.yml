@@ -13,7 +13,6 @@ php:
     - nightly
 
 env:
-  matrix:
     - COMPOSER_PARAM="update --prefer-source --optimize-autoloader --no-suggest --prefer-lowest"
     - COMPOSER_PARAM="update --prefer-source --optimize-autoloader --no-suggest"
     - SYMFONY_VERSION=3.4.*
@@ -21,9 +20,8 @@ env:
     - SYMFONY_VERSION=5.0.*
     - SYMFONY_VERSION=5.1.*
 
-matrix:
-  allow_failures:
-    - php: nightly
+allow_failures:
+  - php: nightly
 
 before_script:
     - if [ "${SYMFONY_VERSION}" != "" ]; then perl -pi -e 's#"(symfony/.*)":\s*".*"#"$1":"'"${SYMFONY_VERSION}"'"#' composer.json; fi;
