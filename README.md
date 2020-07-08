@@ -72,7 +72,7 @@ Given the following directory structure of a fictitious Symfony 2 application
 your configuration might look like this
 
     tq_ext_js_application:
-        app_path: '%kernel.root_dir%/../ExampleApp'
+        app_path: '%kernel.project_dir%/ExampleApp'
         builds:
             default:
                 development:

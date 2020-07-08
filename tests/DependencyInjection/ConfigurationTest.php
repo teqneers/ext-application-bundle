@@ -33,7 +33,7 @@ class ConfigurationTest extends TestCase
         $processor     = new Processor();
         $config        = $processor->processConfiguration($configuration, array(
             array(
-                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'app_path' => '%kernel.project_dir%/ExampleApp',
                 'builds'   => array(
                     'desktop' => array(
                         'development' => array(
@@ -49,7 +49,7 @@ class ConfigurationTest extends TestCase
 
         $this->assertEquals(
             array(
-                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'app_path' => '%kernel.project_dir%/ExampleApp',
                 'builds'   => array(
                     'desktop' => array(
                         'development' => array(
@@ -96,7 +96,7 @@ class ConfigurationTest extends TestCase
 
         $processor->processConfiguration($configuration, array(
             array(
-                'app_path' => '%kernel.root_dir%/../ExampleApp'
+                'app_path' => '%kernel.project_dir%/ExampleApp'
             )
         ));
     }

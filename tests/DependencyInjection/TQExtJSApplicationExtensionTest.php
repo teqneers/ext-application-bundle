@@ -41,7 +41,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'app_path' => '%kernel.project_dir%/ExampleApp',
                 'builds' => array(
                     'desktop' => array(
                         'development' => array(
@@ -62,7 +62,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
             $application
         );
         $this->assertEquals(
-            sys_get_temp_dir() . '/ext-application-bundle/app/../ExampleApp/build/development/ExampleApp',
+            sys_get_temp_dir() . '/ext-application-bundle/ExampleApp/build/development/ExampleApp',
             $application->getBuildPath()
         );
     }
@@ -71,7 +71,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'app_path' => '%kernel.project_dir%/ExampleApp',
                 'builds' => array(
                     'desktop' => array(
                         'development' => array(
@@ -92,7 +92,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
             $application
         );
         $this->assertEquals(
-            sys_get_temp_dir() . '/ext-application-bundle/app/../ExampleApp/build/production/ExampleApp',
+            sys_get_temp_dir() . '/ext-application-bundle/ExampleApp/build/production/ExampleApp',
             $application->getBuildPath()
         );
     }
@@ -101,7 +101,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'app_path' => '%kernel.project_dir%/ExampleApp',
                 'builds' => array(
                     'desktop' => array(
                         'development' => array(
@@ -122,7 +122,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
             $application
         );
         $this->assertEquals(
-            sys_get_temp_dir() . '/ext-application-bundle/app/../ExampleApp/build/development/ExampleApp',
+            sys_get_temp_dir() . '/ext-application-bundle/ExampleApp/build/development/ExampleApp',
             $application->getBuildPath()
         );
     }
@@ -131,7 +131,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
     {
         $container = $this->getContainerForConfig(array(
             array(
-                'app_path' => '%kernel.root_dir%/../ExampleApp',
+                'app_path' => '%kernel.project_dir%/ExampleApp',
                 'builds' => array(
                     'desktop' => array(
                         'development' => array(
@@ -152,7 +152,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
             $application
         );
         $this->assertEquals(
-            sys_get_temp_dir() . '/ext-application-bundle/app/../ExampleApp/build/production/ExampleApp',
+            sys_get_temp_dir() . '/ext-application-bundle/ExampleApp/build/production/ExampleApp',
             $application->getBuildPath()
         );
     }
@@ -178,7 +178,7 @@ class TQExtJSApplicationExtensionTest extends TestCase
         $container = new ContainerBuilder();
         $container->setParameter('kernel.debug', $debug);
         $container->setParameter('kernel.environment', $environment);
-        $container->setParameter('kernel.root_dir', $rootPath . '/app');
+        $container->setParameter('kernel.project_dir', $rootPath);
         $container->setParameter('kernel.cache_dir', $rootPath . '/cache');
         $container->setParameter('kernel.bundles', array());
         $container->set('router', $urlGenerator);

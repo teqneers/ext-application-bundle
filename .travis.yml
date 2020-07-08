@@ -7,22 +7,26 @@ cache:
         - $HOME/.composer/cache/files
 
 php:
-    - 5.6
-    - 7.0
-    - 7.1
     - 7.2
+    - 7.3
+    - 7.4
     - nightly
 
 env:
   matrix:
     - COMPOSER_PARAM="update --prefer-source --optimize-autoloader --no-suggest --prefer-lowest"
     - COMPOSER_PARAM="update --prefer-source --optimize-autoloader --no-suggest"
+    - SYMFONY_VERSION=3.4.*
+    - SYMFONY_VERSION=4.4.*
+    - SYMFONY_VERSION=5.0.*
+    - SYMFONY_VERSION=5.1.*
 
 matrix:
   allow_failures:
     - php: nightly
 
 before_script:
+    - if [ "${SYMFONY_VERSION}" != "" ]; then perl -pi -e 's#"(symfony/.*)":\s*".*"#"$1":"'"${SYMFONY_VERSION}"'"#' composer.json; fi;
     - composer selfupdate
     - composer $COMPOSER_PARAM
 
