@@ -1,5 +1,5 @@
 # ext-application-bundle
-A Symfony 2 bundle to integrate Sencha Ext JS into a Symfony 2 application
+A Symfony bundle to integrate Sencha Ext JS into a Symfony application
 
 [![Build Status](https://travis-ci.org/teqneers/ext-application-bundle.svg?branch=master)](https://travis-ci.org/teqneers/ext-application-bundle)
 [![Code Coverage](https://scrutinizer-ci.com/g/teqneers/ext-application-bundle/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/teqneers/ext-application-bundle/?branch=master)
@@ -57,14 +57,14 @@ need to configure your routing to include the bundle routes at a given prefix. E
 
 ### Example
 
-Given the following directory structure of a fictitious Symfony 2 application
+Given the following directory structure of a fictitious Symfony application
 
     ./
     |-- app/            Application configuration and assets
     |-- src/            Application source code
     |-- web/            Public web-facing directory (document root)
-    |   |-- app.php     Symfony 2 production front controller
-    |   |-- app_dev.php Symfony 2 development front controller
+    |   |-- app.php     Symfony production front controller
+    |   |-- app_dev.php Symfony development front controller
     |   |-- app/        Root folder for Ext JS application production build
     |-- ExampleApp/     The Ext JS application source folder
 
