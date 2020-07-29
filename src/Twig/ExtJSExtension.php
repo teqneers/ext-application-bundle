@@ -10,13 +10,14 @@
 namespace TQ\Bundle\ExtJSApplicationBundle\Twig;
 
 use TQ\Bundle\ExtJSApplicationBundle\Helper\TemplatingHelper;
+use Twig\TwigFunction;
 
 /**
  * Class ExtJSExtension
  *
  * @package TQ\Bundle\ExtJSApplicationBundle\Twig
  */
-class ExtJSExtension extends \Twig_Extension
+class ExtJSExtension extends \Twig\Extension\AbstractExtension
 {
     /**
      * @var TemplatingHelper
@@ -37,19 +38,19 @@ class ExtJSExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'extjsManifestPath',
                 [$this->templatingHelper, 'getManifestPath']
             ),
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'extjsBootstrapPath',
                 [$this->templatingHelper, 'getBootstrapPath']
             ),
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'extjsAppCachePath',
                 [$this->templatingHelper, 'getAppCachePath']
             ),
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'extjsApplicationId',
                 [$this->templatingHelper, 'getApplicationId']
             ),
