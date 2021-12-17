@@ -36,7 +36,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
       - name: Install symfony/flex globally
-        run: composer global require --no-interaction --no-progress --no-scripts --no-plugins symfony/flex dev-master
+        run: composer global require --no-interaction --no-progress --no-scripts --no-plugins symfony/flex
       - name: Validate composer.json and composer.lock
         run: composer validate --no-interaction --no-check-all --strict
       - name: Install PHP dependencies
