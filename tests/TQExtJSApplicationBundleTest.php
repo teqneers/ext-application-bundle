@@ -14,6 +14,7 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use TQ\Bundle\ExtJSApplicationBundle\Controller\ExtJSController;
 use TQ\Bundle\ExtJSApplicationBundle\TQExtJSApplicationBundle;
@@ -219,7 +220,7 @@ class TQExtJSApplicationBundleTest extends TestCase
 class AppKernel extends Kernel
 {
     /**
-     * {@inheritdoc}
+     * @return iterable<mixed, BundleInterface>
      */
     public function registerBundles()
     {
@@ -238,7 +239,7 @@ class AppKernel extends Kernel
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getCacheDir()
     {
@@ -246,7 +247,7 @@ class AppKernel extends Kernel
     }
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getLogDir()
     {
