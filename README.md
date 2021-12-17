@@ -2,6 +2,8 @@
 
 A Symfony bundle to integrate Sencha Ext JS into a Symfony application
 
+[![Build Status](https://github.com/teqneers/ext-application-bundle/actions/workflows/php.yml/badge.svg)](https://github.com/teqneers/ext-application-bundle/actions/workflows/php.yml)
+
 ## Installation
 
 You can install this bundle using composer
