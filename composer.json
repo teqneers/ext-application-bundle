@@ -28,7 +28,7 @@
         "symfony/http-kernel": "~5.0",
         "symfony/routing": "~5.0",
         "symfony/yaml": "~5.0",
-        "teqneers/ext-application": "3.0.x-dev",
+        "teqneers/ext-application": "^3.0",
         "twig/twig": "~3.3"
     },
     "require-dev": {
